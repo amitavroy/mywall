@@ -2,27 +2,6 @@
 
 /*
 |--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
- */
-
-Route::get('/', [
-    'as' => 'login',
-    'uses' => 'Auth\AuthController@getLogin',
-]);
-
-Route::get('dashboard', [
-    'as' => 'dashboard',
-    'uses' => 'DashboardController@getDashboard',
-]);
-
-/*
-|--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 |
@@ -33,5 +12,20 @@ Route::get('dashboard', [
  */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+    /**
+     * Authentication
+     */
+    Route::get('login', 'Auth\AuthController@getLogin');
+    Route::post('login', 'Auth\AuthController@postLogin');
+
+    /**
+     * Auth based urls
+     */
+    Route::group(['middleware' => ['auth']], function () {
+
+        Route::get('/', [
+            'as' => 'dashboard',
+            'uses' => 'DashboardController@getDashboard',
+        ]);
+    });
 });

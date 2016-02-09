@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Illuminate\Http\Request;
 use Validator;
 
 class AuthController extends Controller
@@ -37,7 +38,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => ['logout', 'getLogin', 'postLogin']]);
     }
 
     /**
@@ -70,8 +71,18 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Show the application login form
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getLogin()
     {
         return view(settings('theme_folder') . 'user/login');
+    }
+
+    public function postLogin(Request $request)
+    {
+        return $request->all();
     }
 }
