@@ -211,17 +211,17 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="{{url('admin_lte/img/anonymous.jpg')}}" class="user-image" alt="User Image">
-            <span class="hidden-xs">Alexander Pierce</span>
+            <img src="{{Auth::user()->present()->avatar}}" class="user-image" alt="User Image">
+            <span class="hidden-xs">{{Auth::user()->present()->displayName}}</span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="{{url('admin_lte/img/anonymous.jpg')}}" class="img-circle" alt="User Image">
+              <img src="{{Auth::user()->present()->avatar}}" class="img-circle" alt="User Image">
 
               <p>
-                Alexander Pierce - Web Developer
-                <small>Member since Nov. 2012</small>
+                  {{Auth::user()->present()->displayName}}
+                <small>Member since {{Auth::user()->present()->memberSince}}</small>
               </p>
             </li>
             <!-- Menu Body -->
@@ -245,7 +245,7 @@
                 <a href="#" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                <a href="{{route('logout')}}" class="btn btn-default btn-flat">Sign out</a>
               </div>
             </li>
           </ul>

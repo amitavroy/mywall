@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class AuthController extends Controller
@@ -38,7 +39,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => ['logout', 'getLogin', 'postLogin']]);
+        $this->middleware('guest', ['except' => ['doLogout', 'getLogin', 'postLogin']]);
     }
 
     /**
@@ -81,8 +82,40 @@ class AuthController extends Controller
         return view(settings('theme_folder') . 'user/login');
     }
 
+    /**
+     * Handle the user login
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postLogin(Request $request)
     {
-        return $request->all();
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $remember = false;
+
+        if ($request->input('remember') == 'on') {
+            $remember = true;
+        }
+
+        if (Auth::attempt(['email' => $email, 'password' => $password, 'status' => 1], $remember)) {
+            // Authentication passed...
+            return redirect()->intended('/');
+        }
+
+        flash()->warning('The username and password does not match.');
+
+        return redirect()->back();
+    }
+
+    /**
+     * Logout the user
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function doLogout()
+    {
+        Auth::logout();
+        return redirect('login');
     }
 }
