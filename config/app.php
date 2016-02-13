@@ -160,6 +160,7 @@ return [
          * Contributed Service Providers...
          */
         Laracasts\Flash\FlashServiceProvider::class,
+        anlutro\LaravelSettings\ServiceProvider::class,
 
     ],
 
@@ -211,6 +212,7 @@ return [
          * Custom Facades
          */
         'Flash' => Laracasts\Flash\Flash::class,
+        'Setting' => anlutro\LaravelSettings\Facade::class,
 
     ],
 

@@ -1,19 +1,16 @@
 <?php
 
 if (!function_exists('settings')) {
-    function settings($key = null, $default = null)
+    /**
+     * Get the setting saved in settings.json file
+     * based on the library anlutro/l4-settings
+     * 
+     * @param null $key
+     * @return mixed
+     */
+    function settings($key = null)
     {
-        $settings = json_decode(file_get_contents(storage_path('settings.json')));
-
-        if (is_null($key)) {
-            return $settings;
-        }
-
-        if (isset($settings->$key)) {
-            return $settings->$key;
-        }
-
-        return null;
+        return \Setting::get($key);
     }
 }
 
