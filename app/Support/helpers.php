@@ -4,7 +4,7 @@ if (!function_exists('settings')) {
     /**
      * Get the setting saved in settings.json file
      * based on the library anlutro/l4-settings
-     * 
+     *
      * @param null $key
      * @return mixed
      */

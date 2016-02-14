@@ -4,6 +4,8 @@
     @include(settings('theme_folder') . 'sections.meta-data')
 
     @include(settings('theme_folder') . 'sections.style')
+    @yield('styles')
+    <script> var base_url = "{{url('/')}}/";</script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -35,5 +37,6 @@
 <!-- ./wrapper -->
 
 @include('admin_lte.sections.footer-scripts')
+@yield('scripts-footer')
 </body>
 </html>

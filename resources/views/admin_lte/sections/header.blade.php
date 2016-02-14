@@ -212,7 +212,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="{{Auth::user()->present()->avatar}}" class="user-image" alt="User Image">
-            <span class="hidden-xs">{{Auth::user()->present()->displayName}}</span>
+            <span class="hidden-xs display-name">{{Auth::user()->present()->displayName}}</span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
@@ -220,7 +220,7 @@
               <img src="{{Auth::user()->present()->avatar}}" class="img-circle" alt="User Image">
 
               <p>
-                  {{Auth::user()->present()->displayName}}
+                  <span class="display-name">{{Auth::user()->present()->displayName}}</span>
                 <small>Member since {{Auth::user()->present()->memberSince}}</small>
               </p>
             </li>
@@ -242,7 +242,7 @@
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <a href="{{route('profile')}}" class="btn btn-default btn-flat">Profile</a>
               </div>
               <div class="pull-right">
                 <a href="{{route('logout')}}" class="btn btn-default btn-flat">Sign out</a>

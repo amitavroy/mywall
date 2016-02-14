@@ -42,11 +42,16 @@
 <!-- FastClick -->
 <script src="{{theme_url('plugins/fastclick/fastclick.js')}}"></script>
 
+<!-- Gritter -->
+<script src="{{theme_url('plugins/gritter/js/jquery.gritter.min.js')}}"></script>
+
 <!-- AdminLTE App -->
 <script src="{{theme_url('js/app.min.js')}}"></script>
 
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{theme_url('js/pages/dashboard.js')}}"></script>
-
-<!-- AdminLTE for demo purposes -->
-<script src="{{theme_url('js/demo.js')}}"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>

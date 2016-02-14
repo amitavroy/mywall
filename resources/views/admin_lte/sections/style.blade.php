@@ -21,6 +21,11 @@
 <!-- Pace -->
 <link rel="stylesheet" href="{{theme_url('plugins/pace/pace.min.css')}}">
 
+<!-- Gritter -->
+<link rel="stylesheet" href="{{theme_url('plugins/gritter/css/jquery.gritter.css')}}">
+
+<link rel="stylesheet" href="{{theme_url('css/custom.css')}}">
+
 <!-- bootstrap wysihtml5 - text editor -->
 <!-- <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"> -->
 

@@ -33,5 +33,15 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'DashboardController@getDashboard',
         ]);
 
+        Route::get('profile', [
+            'as' => 'profile',
+            'uses' => 'UserController@getProfilePage'
+        ]);
+
+        Route::post('profile', [
+            'as' => 'profile.save',
+            'uses' => 'UserController@postProfilePage'
+        ]);
+
     });
 });

@@ -10,7 +10,7 @@
         <small>Control panel</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Dashboard</li>
     </ol>
 </section>
@@ -110,9 +110,11 @@
 
                 <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
                     <div class="btn-group" data-toggle="btn-toggle">
-                        <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
+                        <button type="button" class="btn btn-default btn-sm active"><i
+                                class="fa fa-square text-green"></i>
                         </button>
-                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -308,7 +310,8 @@
                 <h3 class="box-title">Quick Email</h3>
                 <!-- tools box -->
                 <div class="pull-right box-tools">
-                    <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
+                    <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
+                            title="Remove">
                         <i class="fa fa-times"></i></button>
                 </div>
                 <!-- /. tools -->
@@ -322,7 +325,8 @@
                         <input type="text" class="form-control" name="subject" placeholder="Subject">
                     </div>
                     <div>
-                        <textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                        <textarea class="textarea" placeholder="Message"
+                                  style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                     </div>
                 </form>
             </div>
@@ -342,9 +346,11 @@
             <div class="box-header">
                 <!-- tools box -->
                 <div class="pull-right box-tools">
-                    <button type="button" class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip" title="Date range">
+                    <button type="button" class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip"
+                            title="Date range">
                         <i class="fa fa-calendar"></i></button>
-                    <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse" data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
+                    <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse"
+                            data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
                         <i class="fa fa-minus"></i></button>
                 </div>
                 <!-- /. tools -->
@@ -403,19 +409,22 @@
             <div class="box-footer no-border">
                 <div class="row">
                     <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                        <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                        <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
+                               data-fgColor="#39CCCC">
 
                         <div class="knob-label">Mail-Orders</div>
                     </div>
                     <!-- ./col -->
                     <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                        <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                        <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
+                               data-fgColor="#39CCCC">
 
                         <div class="knob-label">Online</div>
                     </div>
                     <!-- ./col -->
                     <div class="col-xs-4 text-center">
-                        <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
+                        <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
+                               data-fgColor="#39CCCC">
 
                         <div class="knob-label">In-Store</div>
                     </div>
@@ -446,9 +455,11 @@
                             <li><a href="#">View calendar</a></li>
                         </ul>
                     </div>
-                    <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+                    <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i
+                            class="fa fa-minus"></i>
                     </button>
-                    <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+                    <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i
+                            class="fa fa-times"></i>
                     </button>
                 </div>
                 <!-- /. tools -->
@@ -508,4 +519,12 @@
     <!-- right col -->
 </div>
 <!-- /.row (main row) -->
+@endsection
+
+@section('scripts-footer')
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{theme_url('js/pages/dashboard.js')}}"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="{{theme_url('js/demo.js')}}"></script>
 @endsection

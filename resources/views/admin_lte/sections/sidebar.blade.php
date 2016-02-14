@@ -7,7 +7,7 @@
         <img src="{{Auth::user()->present()->avatar}}" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>{{Auth::user()->present()->displayName}}</p>
+        <p class="display-name">{{Auth::user()->present()->displayName}}</p>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>
