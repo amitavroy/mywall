@@ -60,7 +60,8 @@
 
                                         <div class="form-group">
                                             <label for="name">Display name</label>
-                                            <input type="text" name="name" id="name" class="form-control" value="{{$user->name}}">
+                                            <input type="text" name="name" id="name" class="form-control"
+                                                   value="{{$user->name}}">
                                         </div>
 
                                         <div class="form-group">
@@ -87,11 +88,13 @@
                                 <div class="box box-solid">
                                     <div class="box-header with-border"><h4 class="box-title">Avatar</h4></div>
                                     <div class="box-body">
+
                                         <input type="hidden" id="imagebase64" name="imagebase64">
 
                                         <div id="result-ad">
-                                            <div id="result-ad-img"><img src="{{Auth::user()->present()->avatar}}"
-                                                                         alt=""></div>
+                                            <div id="result-ad-img">
+                                                <img src="{{Auth::user()->present()->avatar}}" alt="">
+                                            </div>
                                         </div>
 
                                         <div class="form-group">
@@ -104,7 +107,7 @@
                                                     Upload Ad Image
                                                 </button>
 
-                                                <button class="btn btn-primary">
+                                                <button class="btn btn-primary" id="save-avatar">
                                                     <i class="fa fa-save"></i>
                                                     Save
                                                 </button>
@@ -171,10 +174,17 @@
                 height: 200
             });
 
+            /*Handle the click of profile update button*/
             $('#save-profile').on('click', function () {
                 $('#save-profile i').removeClass().addClass('fa fa-refresh fa-spin');
                 editProfile.updateDetails();
                 return false;
+            });
+
+            /**/
+            $('#save-avatar').on('click', function () {
+                $('#save-avatar i').removeClass().addClass('fa fa-refresh fa-spin');
+                editProfile.saveUserAvatar();
             });
         });
 
@@ -204,12 +214,41 @@
                         class_name: 'my-sticky-class'
                     });
                 }).error(function () {
-                    
+                    $('#save-profile i').removeClass().addClass('fa fa-save');
+                });
+            };
+
+            /**
+             * Save the user avatar
+             */
+            var saveUserAvatar = function () {
+                var postData = {
+                    avatar: $('input[name="imagebase64"]').val()
+                };
+
+                $.ajax({
+                    url: base_url + 'avatar-save',
+                    type: "POST",
+                    dataType: "json",
+                    data: postData
+                }).success(function (response) {
+                    $('#save-avatar i').removeClass().addClass('fa fa-save');
+                    $('img.user-pic').attr('src', response.data.image_url);
+                    $.gritter.add({
+                        title: 'Action completed',
+                        text: 'Your profile is changed.',
+                        time: '',
+                        image: response.data.image_url,
+                        class_name: 'my-sticky-class'
+                    });
+                }).error(function () {
+                    $('#save-avatar i').removeClass().addClass('fa fa-save');
                 });
             };
 
             return {
-                updateDetails: updateUserDetails
+                updateDetails: updateUserDetails,
+                saveUserAvatar: saveUserAvatar
             }
 
         })();

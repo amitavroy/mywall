@@ -43,5 +43,10 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'UserController@postProfilePage'
         ]);
 
+        Route::post('avatar-save', [
+            'as' => 'avatar.save',
+            'uses' => 'UserController@postSaveUserAvatar'
+        ]);
+
     });
 });

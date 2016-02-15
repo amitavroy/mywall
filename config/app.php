@@ -161,6 +161,7 @@ return [
          */
         Laracasts\Flash\FlashServiceProvider::class,
         anlutro\LaravelSettings\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -213,6 +214,7 @@ return [
          */
         'Flash' => Laracasts\Flash\Flash::class,
         'Setting' => anlutro\LaravelSettings\Facade::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
     ],
 

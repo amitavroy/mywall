@@ -1,6 +1,6 @@
 <header class="main-header">
   <!-- Logo -->
-  <a href="index2.html" class="logo">
+  <a href="{{route('dashboard')}}" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>MW</b></span>
     <!-- logo for regular state and mobile devices -->
@@ -211,13 +211,13 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="{{Auth::user()->present()->avatar}}" class="user-image" alt="User Image">
+            <img src="{{Auth::user()->present()->avatar}}" class="user-image user-pic" alt="User Image">
             <span class="hidden-xs display-name">{{Auth::user()->present()->displayName}}</span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="{{Auth::user()->present()->avatar}}" class="img-circle" alt="User Image">
+              <img src="{{Auth::user()->present()->avatar}}" class="img-circle user-pic" alt="User Image">
 
               <p>
                   <span class="display-name">{{Auth::user()->present()->displayName}}</span>
