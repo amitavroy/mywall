@@ -9,6 +9,7 @@
 namespace App\Presenters;
 
 
+use App\Support\FileManager;
 use Carbon\Carbon;
 use Laracasts\Presenter\Presenter;
 
@@ -38,7 +39,8 @@ class UserPresenter extends Presenter
     public function avatar()
     {
         if ($this->avatar_url != null && $this->avatar_url != '') {
-            return $this->avatar_url;
+            $fm = new FileManager;
+            return $fm->uriToUrl($this->avatar_url);
         }
 
         return url('admin_lte/img/anonymous.jpg');

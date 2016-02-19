@@ -3,18 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Support\FileManager;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
+    /**
+     * Get the profile page to the user
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getProfilePage()
     {
         $user = Auth::user();
         return view('pages.user.user-profile', compact('user'));
     }
 
+    /**
+     * Save the profile details
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function postProfilePage(Request $request)
     {
         $user = Auth::user();
@@ -26,36 +38,26 @@ class UserController extends Controller
         return response($user->toArray(), 200);
     }
 
+    /**
+     * Handle the save user profile image
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
     public function postSaveUserAvatar(Request $request)
     {
-        $path = 'uploads/profile_pic/';
-        $file_name = uniqid();
-        $ext = '.jpg';
+        $user = new User;
+        $user->handleUserProfilePicUpdate($request);
 
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
-        }
+        $fm = new FileManager;
 
-        switch (exif_imagetype($request->input('avatar'))) {
-            case 1:
-                $ext = '.gif';
-                break;
-
-            case 3:
-                $ext = '.png';
-                break;
-        }
-
-        Image::make(file_get_contents($request->input('avatar')))
-            ->resize(200, 200)
-            ->save($path . $file_name . $ext);
+        $file = $fm->uploadImageFileFromBase64String($request->input('avatar'), 'fw-labs-db/uploads/profile_pic/', null, 's3');
 
         $user = Auth::user();
-        $user->avatar_url = url($path . $file_name . $ext);
+        $user->avatar_url = $file->file_path;
         $user->save();
 
         return response(['data' => [
-            'image_url' => url($path . $file_name . $ext)
+            'image_url' => $fm->uriToUrl($file->file_path)
         ]], 200);
     }
 }

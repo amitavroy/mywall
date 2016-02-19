@@ -3,7 +3,10 @@
 namespace App;
 
 use App\Presenters\UserPresenter;
+use App\Support\FileManager;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Laracasts\Presenter\PresentableTrait;
 
 class User extends Authenticatable
@@ -29,4 +32,17 @@ class User extends Authenticatable
     ];
 
     protected $presenter = UserPresenter::class;
+
+    public function handleUserProfilePicUpdate(Request $request)
+    {
+        $this->removeOldProfileImage();
+    }
+
+    private function removeOldProfileImage()
+    {
+        if (Auth::user()->avatar_url != '') {
+            $fm = new FileManager;
+            $fm->removeFile(Auth::user()->avatar_url);
+        }
+    }
 }
