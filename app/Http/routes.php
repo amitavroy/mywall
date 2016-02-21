@@ -25,7 +25,7 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('logout', [
             'as' => 'logout',
-            'uses' => 'Auth\AuthController@doLogout'
+            'uses' => 'Auth\AuthController@doLogout',
         ]);
 
         Route::get('/', [
@@ -35,18 +35,26 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('profile', [
             'as' => 'profile',
-            'uses' => 'UserController@getProfilePage'
+            'uses' => 'UserController@getProfilePage',
         ]);
 
         Route::post('profile', [
             'as' => 'profile.save',
-            'uses' => 'UserController@postProfilePage'
+            'uses' => 'UserController@postProfilePage',
         ]);
 
         Route::post('avatar-save', [
             'as' => 'avatar.save',
-            'uses' => 'UserController@postSaveUserAvatar'
+            'uses' => 'UserController@postSaveUserAvatar',
         ]);
+
+        Route::group(['prefix' => 'permissions', 'middleware' => 'role:super admin'], function () {
+            Route::get('manage-roles', [
+                'as' => 'roles.view',
+                'uses' => 'RoleController@getRoleList',
+            ]);
+
+        });
 
     });
 });

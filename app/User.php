@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laracasts\Presenter\PresentableTrait;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
-    use PresentableTrait;
+    use EntrustUserTrait, PresentableTrait;
 
     /**
      * The attributes that are mass assignable.
