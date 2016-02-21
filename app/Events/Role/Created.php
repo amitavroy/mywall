@@ -2,5 +2,5 @@
 
 namespace App\Events\Role;
 
-class Role
+class Created
 {}

@@ -163,6 +163,7 @@ return [
         anlutro\LaravelSettings\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
+        Proengsoft\JsValidation\JsValidationServiceProvider::class,
 
     ],
 
@@ -217,6 +218,7 @@ return [
         'Setting' => anlutro\LaravelSettings\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
+        'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
 
     ],
 

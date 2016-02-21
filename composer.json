@@ -12,7 +12,8 @@
         "anlutro/l4-settings": "^0.4.7",
         "intervention/image": "^2.3",
         "league/flysystem-aws-s3-v3": "~1.0",
-        "zizaco/entrust": "^1.5"
+        "zizaco/entrust": "^1.5",
+        "proengsoft/laravel-jsvalidation": "~1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -49,7 +50,8 @@
             "php artisan optimize"
         ],
         "pre-update-cmd": [
-            "php artisan clear-compiled"
+            "php artisan clear-compiled",
+            "php artisan vendor:publish --provider=\"Proengsoft\\JsValidation\\JsValidationServiceProvider\" --tag=public --force"
         ],
         "post-update-cmd": [
             "php artisan optimize"

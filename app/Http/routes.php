@@ -49,9 +49,15 @@ Route::group(['middleware' => ['web']], function () {
         ]);
 
         Route::group(['prefix' => 'permissions', 'middleware' => 'role:super admin'], function () {
+
             Route::get('manage-roles', [
                 'as' => 'roles.view',
                 'uses' => 'RoleController@getRoleList',
+            ]);
+
+            Route::post('save-role', [
+                'as' => 'role.save',
+                'uses' => 'RoleController@postSaveRole',
             ]);
 
         });

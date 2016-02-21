@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Role;
 
+use App\Events\Role\Created;
 use App\Repositories\Role\RoleRepository;
 use App\Role;
 
@@ -48,6 +49,8 @@ class EloquentRole implements RoleRepository
     public function create(array $data)
     {
         $role = Role::create($data);
+
+        event(new Created($role));
 
         return $role;
     }
