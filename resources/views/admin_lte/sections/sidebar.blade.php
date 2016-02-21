@@ -25,19 +25,23 @@
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu">
   <li class="header">MAIN NAVIGATION</li>
-  <li class="active">
+  <li class="{{ Request::is('/') ? 'active open' : ''  }}">
       <a href="{{route('dashboard')}}">
           <i class="fa fa-dashboard"></i> <span>Dashboard</span>
       </a>
   </li>
   @permission('manage-role-perm')
-  <li class="treeview">
+  <li class="treeview {{ Request::is('permissions*') ? 'active' : ''  }}">
       <a href="javascript:;">
           <i class="fa fa-user"></i> <span>Roles &amp; Permissions</span> <i class="fa fa-angle-left pull-right"></i>
       </a>
       <ul class="treeview-menu">
-          <li class="active"><a href="{{route('roles.view')}}"><i class="fa fa-circle-o"></i> Manage Role</a></li>
-          <li><a href="index2.html"><i class="fa fa-circle-o"></i> Manage Permissions</a></li>
+          <li class="{{ Request::is('permissions/manage-roles') ? 'active' : ''  }}">
+              <a href="{{route('roles.view')}}"><i class="fa fa-circle-o"></i> Manage Role</a>
+          </li>
+          <li class="{{ Request::is('permissions/manage-permission') ? 'active' : ''  }}">
+              <a href="{{route('permission.list')}}"><i class="fa fa-circle-o"></i> Manage Permissions</a>
+          </li>
       </ul>
   </li>
   @endpermission

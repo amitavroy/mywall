@@ -1,6 +1,6 @@
 @extends(settings('theme_folder') . 'master')
 
-@section('page-title', 'Dashboard')
+@section('page-title', 'Manage Roles')
 
 @section('page-header')
     <!-- Content Header (Page header) -->

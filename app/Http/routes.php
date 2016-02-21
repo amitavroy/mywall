@@ -60,6 +60,11 @@ Route::group(['middleware' => ['web']], function () {
                 'uses' => 'RoleController@postSaveRole',
             ]);
 
+            Route::get('manage-permission', [
+                'as' => 'permission.list',
+                'uses' => 'PermissionController@getPermissionList'
+            ]);
+
         });
 
     });

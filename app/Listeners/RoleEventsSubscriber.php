@@ -3,17 +3,26 @@
 namespace App\Listeners;
 
 use App\Events\Role\Created;
+use App\Support\Activity\Logger;
 
 class RoleEventsSubscriber
 {
-    public function __construct()
-    {
+    /**
+     * @var Logger
+     */
+    private $logger;
 
+    /**
+     * @param Logger $logger
+     */
+    public function __construct(Logger $logger)
+    {
+        $this->logger = $logger;
     }
 
     public function onCreate()
     {
-
+        $this->logger->log('A new role was create');
     }
 
     /**

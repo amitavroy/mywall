@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Activity\ActivityRepository;
+use App\Repositories\Activity\EloquentActivity;
 use App\Repositories\Role\EloquentRole;
 use App\Repositories\Role\RoleRepository;
 use Illuminate\Support\ServiceProvider;
@@ -26,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(RoleRepository::class, EloquentRole::class);
+        $this->app->singleton(ActivityRepository::class, EloquentActivity::class);
     }
 }
