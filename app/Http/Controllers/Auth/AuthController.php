@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use JsValidator;
 
 class AuthController extends Controller
 {
@@ -32,10 +33,14 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/home';
 
+    protected $loginValidationRules = [
+        'email' => 'required|email',
+        'password' => 'required',
+    ];
+
     /**
      * Create a new authentication controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -79,7 +84,8 @@ class AuthController extends Controller
      */
     public function getLogin()
     {
-        return view(settings('theme_folder') . 'user/login');
+        $validator = JsValidator::make($this->loginValidationRules);
+        return view(settings('theme_folder') . 'user/login', compact('validator'));
     }
 
     /**

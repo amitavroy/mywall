@@ -45,7 +45,7 @@
 <!-- Gritter -->
 <script src="{{theme_url('plugins/gritter/js/jquery.gritter.min.js')}}"></script>
 
-{{--laravel-jsvalidation--}}
+{{----}}
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
 
 <!-- AdminLTE App -->

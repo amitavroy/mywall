@@ -35,7 +35,7 @@
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form action="{{url('login')}}" method="post">
+        <form action="{{url('login')}}" method="post" id="my-form">
             {{csrf_field()}}
             <div class="form-group has-feedback">
                 <input type="email" class="form-control" placeholder="Email" name="email">
@@ -89,8 +89,15 @@
 <script src="{{theme_url('js/bootstrap.min.js')}}"></script>
 <!-- iCheck -->
 <script src="{{theme_url('plugins/iCheck/icheck.min.js')}}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<!-- Laravel Javascript Validation -->
+{{--<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js', '#my-form')}}"></script>--}}
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+{!! $validator !!}
 <script>
-    $(function () {
+    $(document).ready(function () {
         $('input').iCheck({
             checkboxClass: 'icheckbox_square-blue',
             radioClass: 'iradio_square-blue',
