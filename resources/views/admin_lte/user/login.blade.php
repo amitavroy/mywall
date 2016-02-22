@@ -87,10 +87,9 @@
 <script src="{{theme_url('plugins/jQuery/jQuery-2.2.0.min.js')}}"></script>
 <!-- Bootstrap 3.3.5 -->
 <script src="{{theme_url('js/bootstrap.min.js')}}"></script>
-<!-- iCheck -->
-<script src="{{theme_url('plugins/iCheck/icheck.min.js')}}"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
 
 <!-- Laravel Javascript Validation -->
 {{--<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js', '#my-form')}}"></script>--}}

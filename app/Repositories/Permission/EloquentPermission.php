@@ -1,23 +1,29 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: amitav
+ * Date: 2/21/16
+ * Time: 11:23 PM
+ */
 
-namespace App\Repositories\Role;
+namespace App\Repositories\Permission;
 
-use App\Events\Role\Created;
+
+use App\Permission;
 use App\Repositories\EloquentDBRepository;
-use App\Role;
 
-class EloquentRole extends EloquentDBRepository implements RoleRepository
+class EloquentPermission extends EloquentDBRepository implements PermissionRepository
 {
     /**
-     * @var Role
+     * @var Permissions
      */
     protected $model;
 
     /**
-     * EloquentRole constructor.
-     * @param Role $model
+     * EloquentPermission constructor.
+     * @param Permission $model
      */
-    public function __construct(Role $model)
+    public function __construct(Permission $model)
     {
         $this->model = $model;
     }
@@ -30,11 +36,7 @@ class EloquentRole extends EloquentDBRepository implements RoleRepository
      */
     public function create(array $data)
     {
-        $role = Role::create($data);
-
-        event(new Created($role));
-
-        return $role;
+        // TODO: Implement create() method.
     }
 
     /**
@@ -46,7 +48,7 @@ class EloquentRole extends EloquentDBRepository implements RoleRepository
      */
     public function update($id, array $data)
     {
-
+        // TODO: Implement update() method.
     }
 
     /**
@@ -57,6 +59,6 @@ class EloquentRole extends EloquentDBRepository implements RoleRepository
      */
     public function delete($id)
     {
-
+        // TODO: Implement delete() method.
     }
 }

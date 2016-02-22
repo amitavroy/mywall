@@ -35,6 +35,15 @@
                             <th>Description</th>
                             <th></th>
                         </tr>
+                        @foreach($permissions as $permission)
+                            <tr>
+                                <td>{{$permission->id}}</td>
+                                <td>{{$permission->display_name}}</td>
+                                <td>{{$permission->name}}</td>
+                                <td>{{$permission->description}}</td>
+                                <td></td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

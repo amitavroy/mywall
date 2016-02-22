@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\Activity\ActivityRepository;
 use App\Repositories\Activity\EloquentActivity;
+use App\Repositories\Permission\EloquentPermission;
+use App\Repositories\Permission\PermissionRepository;
 use App\Repositories\Role\EloquentRole;
 use App\Repositories\Role\RoleRepository;
 use Illuminate\Support\ServiceProvider;
@@ -29,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(RoleRepository::class, EloquentRole::class);
         $this->app->singleton(ActivityRepository::class, EloquentActivity::class);
+        $this->app->singleton(PermissionRepository::class, EloquentPermission::class);
     }
 }
