@@ -36,7 +36,7 @@ class EloquentPermission extends EloquentDBRepository implements PermissionRepos
      */
     public function create(array $data)
     {
-        // TODO: Implement create() method.
+        return $this->model->create($data);
     }
 
     /**

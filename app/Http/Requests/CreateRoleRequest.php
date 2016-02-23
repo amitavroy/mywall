@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Support\Facades\Auth;
-use Zizaco\Entrust\Entrust;
 
 class CreateRoleRequest extends Request
 {
@@ -40,7 +39,7 @@ class CreateRoleRequest extends Request
         return [
             'name.required' => 'A name is required for the Role.',
             'display_name.required' => 'This field is required for displaying purpose.',
-            'description.required' => 'You need to enter a short description of what this role doees.'
+            'description.required' => 'You need to enter a short description of what this role does.'
         ];
     }
 }

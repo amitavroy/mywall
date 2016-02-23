@@ -65,6 +65,11 @@ Route::group(['middleware' => ['web']], function () {
                 'uses' => 'PermissionController@getPermissionList'
             ]);
 
+            Route::post('save-permission', [
+                'as' => 'permission.save',
+                'uses' => 'PermissionController@postSaveNewPermission'
+            ]);
+
         });
 
     });
