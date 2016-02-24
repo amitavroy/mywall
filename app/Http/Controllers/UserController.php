@@ -60,4 +60,15 @@ class UserController extends Controller
             'image_url' => $fm->uriToUrl($file->file_path)
         ]], 200);
     }
+
+    public function getAddUser()
+    {
+        return view(settings('theme_folder') . 'user/user-add');
+    }
+
+    public function getUserList()
+    {
+        $users = User::all();
+        return view(settings('theme_folder') . 'user/user-list', compact('users'));
+    }
 }

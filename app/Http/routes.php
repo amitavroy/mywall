@@ -33,6 +33,9 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'DashboardController@getDashboard',
         ]);
 
+        /**
+         * Profile urls
+         */
         Route::get('profile', [
             'as' => 'profile',
             'uses' => 'UserController@getProfilePage',
@@ -48,6 +51,9 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'UserController@postSaveUserAvatar',
         ]);
 
+        /**
+         * Permission urls
+         */
         Route::group(['prefix' => 'permissions', 'middleware' => 'role:super admin'], function () {
 
             Route::get('manage-roles', [
@@ -72,5 +78,21 @@ Route::group(['middleware' => ['web']], function () {
 
         });
 
+        /**
+         * Users urls
+         */
+        Route::group(['prefix' => 'users', 'middleware' => 'permission:manage-users'], function () {
+
+            Route::get('add', [
+                'as' => 'user.add',
+                'uses' => 'UserController@getAddUser',
+            ]);
+
+            Route::get('list', [
+                'as' => 'user.list',
+                'uses' => 'UserController@getUserList',
+            ]);
+
+        });
     });
 });
