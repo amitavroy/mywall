@@ -19,7 +19,7 @@
 
 @section('content')
     <div class="row">
-        <form action="{{route('user.add')}}" method="post" id="save-user" class="form-horizontal">
+        <form action="{{route('user.save')}}" method="post" id="save-user" class="form-horizontal">
             <div class="col-sm-7 col-sm-push-2">
                 <div class="box box-primary">
                     <div class="box-header with-border">

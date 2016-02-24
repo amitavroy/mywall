@@ -88,6 +88,11 @@ Route::group(['middleware' => ['web']], function () {
                 'uses' => 'UserController@getAddUser',
             ]);
 
+            Route::post('add', [
+                'as' => 'user.save',
+                'uses' => 'UserController@postSaveUser',
+            ]);
+
             Route::get('list', [
                 'as' => 'user.list',
                 'uses' => 'UserController@getUserList',

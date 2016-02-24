@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\CreateUserRequest;
 use App\Support\FileManager;
 use App\User;
 use Illuminate\Http\Request;
@@ -70,5 +71,17 @@ class UserController extends Controller
     {
         $users = User::all();
         return view(settings('theme_folder') . 'user/user-list', compact('users'));
+    }
+
+    public function postSaveUser(CreateUserRequest $request)
+    {
+        $user = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+        ]);
+
+        return redirect()->back();
     }
 }
