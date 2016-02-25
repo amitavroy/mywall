@@ -79,4 +79,5 @@
 @endsection
 
 @section('scripts-footer')
+    {!! JsValidator::formRequest('App\Http\Requests\CreateUserRequest', '#save-user') !!}
 @endsection
