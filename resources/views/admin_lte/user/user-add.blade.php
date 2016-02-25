@@ -68,6 +68,28 @@
                                        class="form-control" value="{{old('last_name')}}"/>
                             </div>
                         </div>
+
+                        @if (settings('send_password_through_mail') == false)
+                            <div class="form-group">
+                                <label for="name" class="col-sm-3 control-label">Password</label>
+
+                                <div class="col-sm-9">
+                                    <input type="password" name="password"
+                                           id="password" placeholder="Enter user password"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name" class="col-sm-3 control-label">Confirm password</label>
+
+                                <div class="col-sm-9">
+                                    <input type="password" name="cpassword"
+                                           id="cpassword" placeholder="Confirm user password"
+                                           class="form-control"/>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
 

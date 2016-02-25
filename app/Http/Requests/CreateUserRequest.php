@@ -27,12 +27,19 @@ class CreateUserRequest extends Request
      */
     public function rules()
     {
-        return [
+        $rules = [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users,email',
             'first_name' => 'required',
             'last_name' => 'required',
         ];
+
+        if (settings('send_password_through_mail') == false) {
+            $rules['password'] = 'required|min:5';
+            $rules['cpassword'] = 'required|min:5|same:password';
+        }
+
+        return $rules;
     }
 
     public function messages()

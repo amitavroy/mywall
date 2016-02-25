@@ -3,5 +3,6 @@
     "theme_folder": "admin_lte/",
     "forgot_password": 1,
     "social_logins": true,
-    "new_user_registration": true
+    "new_user_registration": true,
+    "send_password_through_mail": true
 }

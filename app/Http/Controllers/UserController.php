@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\User\Created;
 use App\Http\Requests;
 use App\Http\Requests\CreateUserRequest;
 use App\Support\FileManager;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -75,12 +77,24 @@ class UserController extends Controller
 
     public function postSaveUser(CreateUserRequest $request)
     {
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-        ]);
+        $pass = null;
+        $user = new User;
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
+        $user->status = 1;
+
+        if (settings('send_password_through_mail') == true) {
+            $pass = uniqid();
+            $user->password = Hash::make($pass);
+        } else {
+            $user->password = Hash::make($request->input('password'));
+        }
+
+        event(new Created($user, $pass));
+
+        $user->save();
 
         return redirect()->back();
     }
