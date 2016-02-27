@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Permission\Created;
 use App\Http\Requests;
 use App\Http\Requests\CreatePermissionRequest;
+use App\Permission;
 use App\Repositories\Permission\PermissionRepository;
+use App\Repositories\Role\RoleRepository;
+use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
@@ -12,14 +16,20 @@ class PermissionController extends Controller
      * @var PermissionRepository
      */
     private $permission;
+    /**
+     * @var RoleRepository
+     */
+    private $role;
 
     /**
      * PermissionController constructor.
      * @param PermissionRepository $permission
+     * @param RoleRepository $role
      */
-    public function __construct(PermissionRepository $permission)
+    public function __construct(PermissionRepository $permission, RoleRepository $role)
     {
         $this->permission = $permission;
+        $this->role = $role;
     }
 
     /**
@@ -42,8 +52,31 @@ class PermissionController extends Controller
             'description' => $request->input('description'),
         ];
 
-        $this->permission->create($data);
+        $perm = $this->permission->create($data);
+
+        event(new Created($perm));
 
         return redirect()->back();
+    }
+
+    public function getPermissionMatrix()
+    {
+        $roles = $this->role->all();
+        $permissions = $this->permission->all();
+
+        return view(settings('theme_folder') . 'permissions/permission-matrix', compact('permissions', 'roles'));
+    }
+
+    public function postPermissionMatrix(Request $request)
+    {
+        $roles = $request->get('roles');
+
+        if ($roles) {
+            foreach ($roles as $roleId => $permissions) {
+                $this->role->updatePermissions($roleId, $permissions);
+            }
+        }
+
+        return redirect()->back()->withSuccess("Permissions updated");
     }
 }

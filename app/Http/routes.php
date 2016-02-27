@@ -76,6 +76,16 @@ Route::group(['middleware' => ['web']], function () {
                 'uses' => 'PermissionController@postSaveNewPermission'
             ]);
 
+            Route::get('permission-matrix', [
+                'as' => 'permission.matrix',
+                'uses' => 'PermissionController@getPermissionMatrix'
+            ]);
+
+            Route::post('permission-matrix-save', [
+                'as' => 'permission.matrix.save',
+                'uses' => 'PermissionController@postPermissionMatrix'
+            ]);
+
         });
 
         /**

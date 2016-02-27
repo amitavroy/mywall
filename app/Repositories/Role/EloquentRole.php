@@ -59,4 +59,22 @@ class EloquentRole extends EloquentDBRepository implements RoleRepository
     {
 
     }
+
+    /**
+     * Saving the role and permission mapping.
+     *
+     * @param $roleId
+     * @param array $permissions
+     * @return bool|mixed
+     */
+    public function updatePermissions($roleId, array $permissions)
+    {
+        $role = $this->findById($roleId);
+
+        $role->perms()->sync([]);
+
+        $role->perms()->sync($permissions);
+        
+        return true;
+    }
 }

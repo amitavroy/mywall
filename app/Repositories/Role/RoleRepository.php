@@ -48,4 +48,13 @@ interface RoleRepository
      * @return bool
      */
     public function delete($id);
+
+    /**
+     * Updating the role and permission mapping from matrix
+     *
+     * @param $roleId
+     * @param array $permissions
+     * @return mixed
+     */
+    public function updatePermissions($roleId, array $permissions);
 }

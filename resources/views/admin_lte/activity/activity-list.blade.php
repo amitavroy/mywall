@@ -1,13 +1,13 @@
 @extends(settings('theme_folder') . 'master')
 
-@section('page-title', 'Manage Permissions')
+@section('page-title', 'Activity log')
 
 @section('page-header')
     <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Manage Permissions
-        <small>Role and Permission management</small>
+        Activity log
+        <small>View the activities happening in the system.</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -30,6 +30,7 @@
                         <tr>
                             <th>#</th>
                             <th>Description</th>
+                            <th>User</th>
                             <th>IP Address</th>
                             <th>Event time</th>
                             <th>User agent</th>
@@ -39,6 +40,7 @@
                             <tr>
                                 <td>{{$activity->id}}</td>
                                 <td>{{$activity->description}}</td>
+                                <td><a href="#">{{$activity->name}}</a></td>
                                 <td>{{$activity->ip_address}}</td>
                                 <td>{{$activity->created_at}}</td>
                                 <td>{{$activity->user_agent}}</td>

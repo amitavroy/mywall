@@ -20,15 +20,21 @@ class ActivityController extends Controller
 
     /**
      * ActivityController constructor.
+     * @param ActivityRepository $activity
      */
     public function __construct(ActivityRepository $activity)
     {
         $this->activity = $activity;
     }
 
+    /**
+     * Get the list of activities which the admin will see.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getActivityList()
     {
-        $activities = $this->activity->paginateActivities();
+        $activities = $this->activity->paginateActivities(100);
 
         return view(settings('theme_folder') . 'activity/activity-list', compact('activities'));
     }

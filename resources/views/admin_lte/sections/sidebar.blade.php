@@ -44,7 +44,7 @@
                         <a href="{{route('permission.list')}}"><i class="fa fa-circle-o"></i> Manage Permissions</a>
                     </li>
                     <li class="{{ Request::is('permissions/permission-matrix') ? 'active' : ''  }}">
-                        <a href="{{route('permission.list')}}"><i class="fa fa-circle-o"></i> Permission Matrix</a>
+                        <a href="{{route('permission.matrix')}}"><i class="fa fa-circle-o"></i> Permission Matrix</a>
                     </li>
                 </ul>
             </li>
