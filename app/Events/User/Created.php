@@ -9,6 +9,7 @@
 namespace App\Events\User;
 
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 class Created
 {
@@ -28,5 +29,12 @@ class Created
     public function sendUserCreationEmail()
     {
         \Log::info('Password ' . $this->password);
+        Mail::send(settings('theme_folder') . 'mails/user-created-mail', [
+            'pass' => $this->password,
+            'user' => $this->user,
+        ], function ($m) {
+            $m->from('amitav.roy@focalworks.in', 'Amitav Roy');
+            $m->to($this->user->email, $this->user->name)->subject('Welcome to ' . settings('site_name'));
+        });
     }
 }
