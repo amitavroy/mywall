@@ -12,4 +12,8 @@ namespace App\Repositories\Activity;
 interface ActivityRepository
 {
     public function log(array $data);
+
+    public function getAllActivities();
+
+    public function paginateActivities();
 }

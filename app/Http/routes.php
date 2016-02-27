@@ -99,5 +99,17 @@ Route::group(['middleware' => ['web']], function () {
             ]);
 
         });
+
+        /**
+         * Activity URLs
+         */
+        Route::group(['prefix' => 'activity', 'middleware' => 'permission:view-activity'], function () {
+
+            Route::get('list', [
+                'as' => 'activity.list',
+                'uses' => 'ActivityController@getActivityList'
+            ]);
+
+        });
     });
 });

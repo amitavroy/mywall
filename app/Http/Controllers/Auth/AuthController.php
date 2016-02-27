@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\User\LoggedIn;
+use App\Events\User\Logout;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -79,6 +81,9 @@ class AuthController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $password, 'status' => 1], $remember)) {
             // Authentication passed...
+
+            event(new LoggedIn(Auth::user()));
+
             return redirect()->intended('/');
         }
 
@@ -94,7 +99,10 @@ class AuthController extends Controller
      */
     public function doLogout()
     {
+        event(new Logout());
+
         Auth::logout();
+
         return redirect('login');
     }
 

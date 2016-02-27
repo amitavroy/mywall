@@ -38,8 +38,15 @@ class UserTableSeeder extends Seeder
         $manageUserPermission->description = 'Manage users. Add, Edit and Delete users from admin interface.';
         $manageUserPermission->save();
 
+        $activityPermission = new Permission();
+        $activityPermission->name = 'view-activity';
+        $activityPermission->display_name = 'View User Activity';
+        $activityPermission->description = 'Allow users to view other user\'s activity';
+        $activityPermission->save();
+
         $superAdmin->attachPermission($manageRolePermission);
         $superAdmin->attachPermission($manageUserPermission);
+        $superAdmin->attachPermission($activityPermission);
 
         $user = User::create([
             'name' => 'Amitav Roy',

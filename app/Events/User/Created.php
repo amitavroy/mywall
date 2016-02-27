@@ -28,7 +28,6 @@ class Created
 
     public function sendUserCreationEmail()
     {
-        \Log::info('Password ' . $this->password);
         Mail::send(settings('theme_folder') . 'mails/user-created-mail', [
             'pass' => $this->password,
             'user' => $this->user,

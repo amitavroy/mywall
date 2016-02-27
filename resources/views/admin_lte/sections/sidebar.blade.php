@@ -66,6 +66,13 @@
                 </ul>
             </li>
             @endpermission
+            @permission('view-activity')
+            <li>
+                <a href="{{route('activity.list')}}">
+                    <i class="fa fa-calendar"></i> <span>Activity List</span>
+                </a>
+            </li>
+            @endpermission
             <li>
                 <a href="pages/calendar.html">
                     <i class="fa fa-calendar"></i> <span>Calendar</span>
