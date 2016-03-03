@@ -8,32 +8,50 @@
 
 namespace App\Events\User;
 
+use App\Repositories\Mail\MailRepository;
 use App\User;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\View;
 
 class Created
 {
     private $user;
     private $password;
+    /**
+     * @var MailRepository
+     */
+    private $mail;
 
     /**
      * Created constructor.
      * @param User $user
+     * @param null $pass
+     * @param MailRepository $mail
      */
-    public function __construct(User $user, $pass = null)
+    public function __construct(User $user, $pass = null, MailRepository $mail)
     {
         $this->user = $user;
         $this->password = $pass;
+        $this->mail = $mail;
     }
 
     public function sendUserCreationEmail()
     {
-        Mail::send(settings('theme_folder') . 'mails/user-created-mail', [
+        $mailData = [
             'pass' => $this->password,
             'user' => $this->user,
-        ], function ($m) {
-            $m->from('amitav.roy@focalworks.in', 'Amitav Roy');
-            $m->to($this->user->email, $this->user->name)->subject('Welcome to ' . settings('site_name'));
-        });
+        ];
+
+        $this->mail->log([
+            'from' => 'amitav.roy@focalworks.in',
+            'to' => $this->user->email,
+            'message' => View::make(settings('theme_folder') . 'mails/user-created-mail')
+                ->with(['user' => $this->user, 'pass' => $this->password]),
+            'attachment' => '',
+            'status' => 1,
+            'type' => 'Registration mail',
+            'subject' => 'Welcome to ' . settings('site_name'),
+            'view' => settings('theme_folder') . 'mails/user-created-mail',
+            'mailData' => $mailData,
+        ]);
     }
 }

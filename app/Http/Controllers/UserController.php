@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\User\Created;
 use App\Http\Requests;
 use App\Http\Requests\CreateUserRequest;
+use App\Repositories\Mail\MailRepository;
 use App\Support\FileManager;
 use App\User;
 use Illuminate\Http\Request;
@@ -75,7 +76,7 @@ class UserController extends Controller
         return view(settings('theme_folder') . 'user/user-list', compact('users'));
     }
 
-    public function postSaveUser(CreateUserRequest $request)
+    public function postSaveUser(CreateUserRequest $request, MailRepository $mail)
     {
         $pass = null;
         $user = new User;
@@ -92,7 +93,7 @@ class UserController extends Controller
             $user->password = Hash::make($request->input('password'));
         }
 
-        event(new Created($user, $pass));
+        event(new Created($user, $pass, $mail));
 
         $user->save();
 

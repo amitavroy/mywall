@@ -34,7 +34,7 @@ class ActivityController extends Controller
      */
     public function getActivityList()
     {
-        $activities = $this->activity->paginateActivities(100);
+        $activities = $this->activity->paginateActivities(10);
 
         return view(settings('theme_folder') . 'activity/activity-list', compact('activities'));
     }

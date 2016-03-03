@@ -74,7 +74,7 @@ class EloquentRole extends EloquentDBRepository implements RoleRepository
         $role->perms()->sync([]);
 
         $role->perms()->sync($permissions);
-        
+
         return true;
     }
 }

@@ -41,6 +41,7 @@ class UserEventSubscriber
 
         if (settings('send_password_through_mail') == true) {
             $event->sendUserCreationEmail();
+            $this->logger->log('User registration mail was sent.');
         }
     }
 
