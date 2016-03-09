@@ -21,6 +21,7 @@
 
         <!-- Main content -->
         <section class="content">
+            @include('flash::message')
             @include(settings('theme_folder') . 'sections.error-message')
             @yield('content')
         </section>

@@ -51,6 +51,21 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'UserController@postSaveUserAvatar',
         ]);
 
+        Route::get('activity-log', [
+            'as' => 'activity-log',
+            'uses' => 'ActivityController@getUserActivityList',
+        ]);
+
+        Route::get('change-password', [
+            'as' => 'user.change-password',
+            'uses' => 'UserController@getPasswordChangePage',
+        ]);
+
+        Route::post('change-password', [
+            'as' => 'user.save-new-password',
+            'uses' => 'UserController@postChangePassword',
+        ]);
+
         /**
          * Permission urls
          */

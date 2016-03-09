@@ -15,5 +15,7 @@ interface ActivityRepository
 
     public function getAllActivities();
 
-    public function paginateActivities();
+    public function paginateActivities($limit, $search);
+
+    public function getUserActivitiesWithPagination();
 }

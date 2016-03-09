@@ -10,6 +10,7 @@ namespace App\Repositories\Activity;
 
 
 use App\Support\Activity\Activity;
+use Illuminate\Support\Facades\Auth;
 
 class EloquentActivity implements ActivityRepository
 {
@@ -75,5 +76,13 @@ class EloquentActivity implements ActivityRepository
 
         return $query->orderBy('user_activity.created_at', 'DESC')
             ->paginate($perPage);
+    }
+
+    public function getUserActivitiesWithPagination($limit = 20, $search = null)
+    {
+        $query = $this->model->query();
+        $query->where('user_id', Auth::user()->id);
+
+        return $this->paginateAndFilterResults($limit, $search, $query);
     }
 }

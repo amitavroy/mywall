@@ -37,7 +37,7 @@ class UserTableSeeder extends Seeder
         $user = User::create([
             'name' => 'Amitav Roy',
             'email' => 'reachme@amitavroy.com',
-            'password' => \Illuminate\Support\Facades\Hash::make('pass'),
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
             'first_name' => 'Amitav',
             'last_name' => 'Roy',
             'status' => 1,
@@ -46,7 +46,7 @@ class UserTableSeeder extends Seeder
         $authUser = User::create([
             'name' => 'Jhon Doe',
             'email' => 'jhon.doe@gmail.com',
-            'password' => \Illuminate\Support\Facades\Hash::make('pass'),
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
             'first_name' => 'Jhon',
             'last_name' => 'Doe',
             'status' => 1,

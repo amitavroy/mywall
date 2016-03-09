@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\User\Created;
 use App\Http\Requests;
+use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\CreateUserRequest;
 use App\Repositories\Mail\MailRepository;
 use App\Support\FileManager;
@@ -11,6 +12,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laracasts\Flash\Flash;
 
 class UserController extends Controller
 {
@@ -22,7 +24,7 @@ class UserController extends Controller
     public function getProfilePage()
     {
         $user = Auth::user();
-        return view('pages.user.user-profile', compact('user'));
+        return view(settings('theme_folder') . 'user.user-profile', compact('user'));
     }
 
     /**
@@ -96,6 +98,23 @@ class UserController extends Controller
         event(new Created($user, $pass, $mail));
 
         $user->save();
+
+        return redirect()->back();
+    }
+
+    public function getPasswordChangePage()
+    {
+        return view(settings('theme_folder') . 'user/user-settings');
+    }
+
+    public function postChangePassword(ChangePasswordRequest $request)
+    {
+        $user = Auth::user();
+
+        $user->password = Hash::make($request->input('confirm_password'));
+        $user->save();
+
+        Flash::success('Password changed.');
 
         return redirect()->back();
     }

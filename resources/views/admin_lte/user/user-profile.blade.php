@@ -1,6 +1,6 @@
 @extends(settings('theme_folder') . 'master')
 
-@section('page-title', 'Dashboard')
+@section('page-title', 'My profile')
 
 @section('styles')
     <link rel="stylesheet" href="{{theme_url('plugins/croppie/croppie.css')}}">
@@ -27,103 +27,26 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active">
-                        <a href="#details" aria-controls="details" role="tab"
-                           data-toggle="tab">
+                        <a href="{{route('profile')}}">
                             <i class="fa fa-info"></i> Details
                         </a>
                     </li>
                     <li role="presentation">
-                        <a href="#activity-log" aria-controls="activity-log" role="tab" data-toggle="tab">
+                        <a href="{{route('activity-log')}}">
                             <i class="fa fa-history"></i> Activity log
                         </a>
                     </li>
                     <li role="presentation">
-                        <a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">
-                            <i class="fa fa-gear"></i> Settings
+                        <a href="{{route('user.change-password')}}">
+                            <i class="fa fa-key"></i> Change password
                         </a>
                     </li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="details">
-                        <div class="row">
-                            <div class="col-md-7">
-                                <div class="box box-solid">
-                                    <div class="box-header with-border"><h4 class="box-title">User details</h4></div>
-                                    <div class="box-body">
-                                        <div class="form-group">
-                                            <label for="email">Email address</label>
-                                            <input type="text" name="email" id="email" class="form-control"
-                                                   value="{{$user->email}}" disabled>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="name">Display name</label>
-                                            <input type="text" name="name" id="name" class="form-control"
-                                                   value="{{$user->name}}">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="first_name">First name</label>
-                                            <input type="text" name="first_name" id="first_name"
-                                                   class="form-control" value="{{$user->first_name}}">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="last_name">Last name</label>
-                                            <input type="text" name="last_name" id="last_name" class="form-control"
-                                                   value="{{$user->last_name}}">
-                                        </div>
-
-                                        <button class="btn btn-success" id="save-profile">
-                                            <i class="fa fa-save"></i>
-                                            Save changes
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-5">
-                                <div class="box box-solid">
-                                    <div class="box-header with-border"><h4 class="box-title">Avatar</h4></div>
-                                    <div class="box-body">
-
-                                        <input type="hidden" id="imagebase64" name="imagebase64">
-
-                                        <div id="result-ad">
-                                            <div id="result-ad-img">
-                                                <img src="{{Auth::user()->present()->avatar}}" alt="">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <p align="center">
-                                                <button type="button"
-                                                        class="btn btn-info"
-                                                        id="croppie-modal"
-                                                        data-toggle="modal" data-target="#myModal">
-                                                    <i class="fa fa-upload"></i>
-                                                    Upload Ad Image
-                                                </button>
-
-                                                <button class="btn btn-primary" id="save-avatar">
-                                                    <i class="fa fa-save"></i>
-                                                    Save
-                                                </button>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="activity-log">
-                        <h2>Activity log</h2>
-                    </div>
-                    <div role="tabpanel" class="tab-pane" id="settings">
-                        <h2>Settings</h2>
-                    </div>
+                    @include('admin_lte.user.partials.user-details')
+                    {{--@include('admin_lte.user.partials.user-settings')--}}
                 </div>
 
             </div>
