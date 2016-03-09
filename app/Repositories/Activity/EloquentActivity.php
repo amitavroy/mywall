@@ -27,11 +27,22 @@ class EloquentActivity implements ActivityRepository
         $this->model = $model;
     }
 
+    /**
+     * This function is used to make a log entry
+     *
+     * @param array $data
+     * @return static
+     */
     public function log(array $data)
     {
         return Activity::create($data);
     }
 
+    /**
+     * Get all activity list from the database
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
     public function getAllActivities()
     {
         return $this->model->all();
@@ -52,6 +63,8 @@ class EloquentActivity implements ActivityRepository
     }
 
     /**
+     * Paginate the list of activities
+     *
      * @param $perPage
      * @param $search
      * @param $query
@@ -78,6 +91,13 @@ class EloquentActivity implements ActivityRepository
             ->paginate($perPage);
     }
 
+    /**
+     * Get the list of activities for the current user
+     *
+     * @param int $limit
+     * @param null $search
+     * @return mixed
+     */
     public function getUserActivitiesWithPagination($limit = 20, $search = null)
     {
         $query = $this->model->query();

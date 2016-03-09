@@ -42,6 +42,7 @@ class ActivityController extends Controller
     public function getUserActivityList()
     {
         $activities = $this->activity->getUserActivitiesWithPagination(20);
+
         return view(settings('theme_folder') . 'user/user-activity-list', compact('activities'));
     }
 }

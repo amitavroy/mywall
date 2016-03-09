@@ -10,8 +10,6 @@ use App\Repositories\Permission\EloquentPermission;
 use App\Repositories\Permission\PermissionRepository;
 use App\Repositories\Role\EloquentRole;
 use App\Repositories\Role\RoleRepository;
-use App\Support\Validations\CurrentPasswordValidation;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,10 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Validator::resolver(function($translator, $data, $rules, $messages)
-        {
-            return new CurrentPasswordValidation($translator, $data, $rules, $messages);
-        });
+        //
     }
 
     /**
