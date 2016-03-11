@@ -26,13 +26,35 @@ class UserTableSeeder extends Seeder
         $authUser->description = 'This is the basic role which every registered user will get by default.';
         $authUser->save();
 
+        /**
+         * Manage Role Permissions
+         */
         $manageRolePermission = new Permission();
         $manageRolePermission->name = 'manage-role-perm';
         $manageRolePermission->display_name = 'Manage Role & Permissions';
-        $manageRolePermission->description = 'Manage roles and give permissios to role holders.';
+        $manageRolePermission->description = 'Manage roles and give permissions to role holders.';
         $manageRolePermission->save();
-
         $superAdmin->attachPermission($manageRolePermission);
+
+        /**
+         * Manage User Permission
+         */
+        $manageUserPermission = new Permission();
+        $manageUserPermission->name = 'manage-users';
+        $manageUserPermission->display_name = 'Manage Users';
+        $manageUserPermission->description = 'Manage Users';
+        $manageUserPermission->save();
+        $superAdmin->attachPermission($manageUserPermission);
+
+        /**
+         * Manage Permission to see Activity
+         */
+        $manageActivityViewPermission = new Permission();
+        $manageActivityViewPermission->name = 'view-activity';
+        $manageActivityViewPermission->display_name = 'View Activity';
+        $manageActivityViewPermission->description = 'View the different user activity in the system.';
+        $manageActivityViewPermission->save();
+        $superAdmin->attachPermission($manageActivityViewPermission);
 
         $user = User::create([
             'name' => 'Amitav Roy',
