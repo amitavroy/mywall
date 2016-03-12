@@ -32,14 +32,17 @@
                         @foreach ($roles as $role)
                             <th class="text-center">{{ $role->display_name }}</th>
                         @endforeach
+                        <th></th>
                         </thead>
 
                         <form action="{{route('permission.matrix.save')}}" method="post">
                             {{csrf_field()}}
                             <tbody>
-                            <button class="btn btn-success pull-right">
+                            <button class="btn btn-success pull-left">
                                 <i class="fa fa-save"></i> Save
                             </button>
+                            <br>
+                            <br>
                             @if (count($permissions))
                                 @foreach ($permissions as $permission)
                                     <tr>

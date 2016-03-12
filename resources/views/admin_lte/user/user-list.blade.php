@@ -33,6 +33,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Member Since</th>
+                            <th></th>
                         </tr>
                         @foreach($users as $user)
                         <tr>
@@ -40,6 +41,9 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->created_at}}</td>
+                            <td>
+                                <a href="{{route('user.edit', $user->id)}}">Edit</a>
+                            </td>
                         </tr>
                             @endforeach
                         </tbody>

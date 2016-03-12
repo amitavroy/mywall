@@ -20,7 +20,6 @@
 <link rel="stylesheet" href="{{theme_url('plugins/daterangepicker/daterangepicker-bs3.css')}}">
 <!-- Pace -->
 <link rel="stylesheet" href="{{theme_url('plugins/pace/pace.min.css')}}">
-
 <!-- Gritter -->
 <link rel="stylesheet" href="{{theme_url('plugins/gritter/css/jquery.gritter.css')}}">
 

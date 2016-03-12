@@ -12,6 +12,8 @@ namespace App\Listeners;
 use App\Events\User\Created;
 use App\Events\User\LoggedIn;
 use App\Events\User\Logout;
+use App\Events\User\PasswordChange;
+use App\Events\User\ProfileUpdate;
 use App\Support\Activity\Logger;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,6 +48,26 @@ class UserEventSubscriber
     }
 
     /**
+     * Event handle when user is updating the profile
+     *
+     * @param ProfileUpdate $event
+     */
+    public function onProfileUpdate(ProfileUpdate $event)
+    {
+        $this->logger->log('User updated his profile');
+    }
+
+    /**
+     * Event handle when user has changed the password
+     *
+     * @param PasswordChange $event
+     */
+    public function onPasswordChange(PasswordChange $event)
+    {
+        $this->logger->log('User password was changed');
+    }
+
+    /**
      * Raising the event when user is logging in.
      *
      * @param LoggedIn $event
@@ -77,5 +99,7 @@ class UserEventSubscriber
         $events->listen(Created::class, "{$class}@onCreate");
         $events->listen(LoggedIn::class, "{$class}@loggedIn");
         $events->listen(Logout::class, "{$class}@logout");
+        $events->listen(ProfileUpdate::class, "{$class}@onProfileUpdate");
+        $events->listen(PasswordChange::class, "{$class}@onPasswordChange");
     }
 }

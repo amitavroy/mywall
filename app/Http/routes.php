@@ -123,6 +123,16 @@ Route::group(['middleware' => ['web']], function () {
                 'uses' => 'UserController@getUserList',
             ]);
 
+            Route::get('edit/{id}', [
+                'as' => 'user.edit',
+                'uses' => 'UserController@getUserEdit',
+            ]);
+
+            Route::post('update', [
+                'as' => 'user.update',
+                'uses' => 'UserController@postUpdateUser',
+            ]);
+
         });
 
         /**

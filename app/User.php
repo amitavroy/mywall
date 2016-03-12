@@ -34,6 +34,11 @@ class User extends Authenticatable
 
     protected $presenter = UserPresenter::class;
 
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role');
+    }
+
     public function handleUserProfilePicUpdate(Request $request)
     {
         $this->removeOldProfileImage();
