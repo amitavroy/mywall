@@ -26,8 +26,8 @@
                 </div>
 
                 <div class="box-body">
-                    <table class="table table-hover table-striped table-bordered">
-                        <tbody>
+                    <table class="table table-hover table-striped table-bordered" id="role-listing">
+                    <tbody>
                         <tr>
                             <th>#</th>
                             <th>Display name</th>
@@ -44,7 +44,7 @@
                                 <td>{{$role->description}}</td>
                                 <td>
                                     <a href="javascript:;"><i class="fa fa-edit"></i></a>
-                                    <a href="javascript:;"><i class="fa fa-trash"></i></a>
+                                    <a href="{{route('role.delete', $role->id)}}"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -111,4 +111,10 @@
     @section('scripts-footer')
     <!-- AdminLTE for demo purposes -->
     <script src="{{theme_url('js/demo.js')}}"></script>
+    <script src="{{theme_url('js/pages/roles.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            Roles.init();
+        });
+    </script>
 @endsection

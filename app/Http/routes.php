@@ -81,6 +81,12 @@ Route::group(['middleware' => ['web']], function () {
                 'uses' => 'RoleController@postSaveRole',
             ]);
 
+            Route::get('delete-role/{id}', [
+                'as' => 'role.delete',
+                'uses' => 'RoleController@getDeleteRole'
+            ]);
+
+
             Route::get('manage-permission', [
                 'as' => 'permission.list',
                 'uses' => 'PermissionController@getPermissionList'

@@ -32,7 +32,6 @@
                         @foreach ($roles as $role)
                             <th class="text-center">{{ $role->display_name }}</th>
                         @endforeach
-                        <th></th>
                         </thead>
 
                         <form action="{{route('permission.matrix.save')}}" method="post">
@@ -62,10 +61,6 @@
                                                 </div>
                                             </td>
                                         @endforeach
-
-                                        <td class="text-center">
-                                            Edit
-                                        </td>
                                     </tr>
                                 @endforeach
                             @else
