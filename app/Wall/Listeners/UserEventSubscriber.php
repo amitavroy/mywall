@@ -6,14 +6,14 @@
  * Time: 12:48 PM
  */
 
-namespace App\Listeners;
+namespace App\Wall\Listeners;
 
 
-use App\Events\User\Created;
-use App\Events\User\LoggedIn;
-use App\Events\User\Logout;
-use App\Events\User\PasswordChange;
-use App\Events\User\ProfileUpdate;
+use App\Wall\Events\User\Created;
+use App\Wall\Events\User\LoggedIn;
+use App\Wall\Events\User\Logout;
+use App\Wall\Events\User\PasswordChange;
+use App\Wall\Events\User\ProfileUpdate;
 use App\Support\Activity\Logger;
 use Illuminate\Support\Facades\Auth;
 
@@ -94,7 +94,7 @@ class UserEventSubscriber
      */
     public function subscribe($events)
     {
-        $class = 'App\Listeners\UserEventSubscriber';
+        $class = 'App\Wall\Listeners\UserEventSubscriber';
 
         $events->listen(Created::class, "{$class}@onCreate");
         $events->listen(LoggedIn::class, "{$class}@loggedIn");

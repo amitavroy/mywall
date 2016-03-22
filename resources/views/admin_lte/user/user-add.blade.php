@@ -101,5 +101,5 @@
 @endsection
 
 @section('scripts-footer')
-    {!! JsValidator::formRequest('App\Http\Requests\CreateUserRequest', '#save-user') !!}
+    {!! JsValidator::formRequest('\App\Wall\Http\Request\User\CreateUserRequest', '#save-user') !!}
 @endsection

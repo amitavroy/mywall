@@ -116,27 +116,27 @@ Route::group(['middleware' => ['web']], function () {
 
             Route::get('add', [
                 'as' => 'user.add',
-                'uses' => 'UserController@getAddUser',
+                'uses' => '\App\Wall\Http\Controllers\UserController@getAddUser',
             ]);
 
             Route::post('add', [
                 'as' => 'user.save',
-                'uses' => 'UserController@postSaveUser',
+                'uses' => '\App\Wall\Http\Controllers\UserController@postSaveUser',
             ]);
 
             Route::get('list', [
                 'as' => 'user.list',
-                'uses' => 'UserController@getUserList',
+                'uses' => '\App\Wall\Http\Controllers\UserController@getUserList',
             ]);
 
             Route::get('edit/{id}', [
                 'as' => 'user.edit',
-                'uses' => 'UserController@getUserEdit',
+                'uses' => '\App\Wall\Http\Controllers\UserController@getUserEdit',
             ]);
 
             Route::post('update', [
                 'as' => 'user.update',
-                'uses' => 'UserController@postUpdateUser',
+                'uses' => '\App\Wall\Http\Controllers\UserController@postUpdateUser',
             ]);
 
         });

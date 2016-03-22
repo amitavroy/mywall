@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Listeners\RoleEventsSubscriber;
-use App\Listeners\UserEventSubscriber;
+use App\Wall\Listeners\UserEventSubscriber;
 use App\Listeners\PermissionEventSubscriber;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
