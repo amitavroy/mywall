@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Repositories\Role;
+namespace App\Wall\Repositories\Role;
 
-use App\Events\Role\Created;
 use App\Repositories\EloquentDBRepository;
 use App\Role;
+use App\Wall\Events\Role\Created;
+use App\Wall\Events\Role\Deleted;
+use Illuminate\Support\Facades\DB;
 
 class EloquentRole extends EloquentDBRepository implements RoleRepository
 {
@@ -57,7 +59,9 @@ class EloquentRole extends EloquentDBRepository implements RoleRepository
      */
     public function delete($id)
     {
+        DB::table('roles')->where('id', $id)->delete();
 
+        event(new Deleted());
     }
 
     /**

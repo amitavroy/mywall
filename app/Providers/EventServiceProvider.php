@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Listeners\RoleEventsSubscriber;
+use App\Wall\Listeners\RoleEventsSubscriber;
 use App\Wall\Listeners\UserEventSubscriber;
 use App\Listeners\PermissionEventSubscriber;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;

@@ -73,17 +73,17 @@ Route::group(['middleware' => ['web']], function () {
 
             Route::get('manage-roles', [
                 'as' => 'roles.view',
-                'uses' => 'RoleController@getRoleList',
+                'uses' => '\App\Wall\Http\Controllers\RoleController@getRoleList',
             ]);
 
             Route::post('save-role', [
                 'as' => 'role.save',
-                'uses' => 'RoleController@postSaveRole',
+                'uses' => '\App\Wall\Http\Controllers\RoleController@postSaveRole',
             ]);
 
             Route::get('delete-role/{id}', [
                 'as' => 'role.delete',
-                'uses' => 'RoleController@getDeleteRole'
+                'uses' => '\App\Wall\Http\Controllers\RoleController@getDeleteRole'
             ]);
 
 

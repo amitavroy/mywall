@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Wall\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CreateRoleRequest;
-use App\Repositories\Role\RoleRepository;
-use Illuminate\Http\Request;
+use App\Wall\Http\Request\Role\CreateRoleRequest;
+use App\Wall\Repositories\Role\RoleRepository;
 use Illuminate\Support\Facades\DB;
 use Laracasts\Flash\Flash;
 
@@ -51,8 +50,10 @@ class RoleController extends Controller
 
     public function getDeleteRole($id)
     {
-        DB::table('roles')->where('id', $id)->delete();
+        $this->role->delete($id);
+
         Flash::success('Role was deleted');
+
         return redirect()->back();
     }
 

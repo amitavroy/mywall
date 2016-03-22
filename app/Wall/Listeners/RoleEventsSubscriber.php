@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Wall\Listeners;
 
-use App\Events\Role\Created;
+use App\Wall\Events\Role\Created;
 use App\Support\Activity\Logger;
+use App\Wall\Events\Role\Deleted;
 
 class RoleEventsSubscriber
 {
@@ -25,6 +26,11 @@ class RoleEventsSubscriber
         $this->logger->log('A new role was create');
     }
 
+    public function onDelete()
+    {
+        $this->logger->log('A new role was deleted.');
+    }
+
     /**
      * Register the listeners for the subscriber.
      *
@@ -32,8 +38,9 @@ class RoleEventsSubscriber
      */
     public function subscribe($events)
     {
-        $class = 'App\Listeners\RoleEventsSubscriber';
+        $class = 'App\Wall\Listeners\RoleEventsSubscriber';
 
         $events->listen(Created::class, "{$class}@onCreate");
+        $events->listen(Deleted::class, "{$class}@onDelete");
     }
 }

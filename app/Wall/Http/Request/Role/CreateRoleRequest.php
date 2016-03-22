@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Wall\Http\Request\Role;
 
+use App\Http\Requests\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CreateRoleRequest extends Request

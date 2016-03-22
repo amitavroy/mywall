@@ -105,7 +105,7 @@
         </div>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    {!! JsValidator::formRequest('App\Http\Requests\CreateRoleRequest', '#create-role') !!}
+    {!! JsValidator::formRequest('\App\Wall\Http\Request\Role\CreateRoleRequest', '#create-role') !!}
     @endsection
 
     @section('scripts-footer')
