@@ -6,7 +6,7 @@
  * Time: 9:17 AM
  */
 
-namespace App\Events\User;
+namespace App\Wall\Events\User;
 
 
 class ProfileUpdate

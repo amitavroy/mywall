@@ -6,7 +6,7 @@
  * Time: 12:47 PM
  */
 
-namespace App\Events\User;
+namespace App\Wall\Events\User;
 
 use App\Repositories\Mail\MailRepository;
 use App\User;

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Events\User\LoggedIn;
-use App\Events\User\Logout;
+use App\Wall\Events\User\LoggedIn;
+use App\Wall\Events\User\Logout;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;

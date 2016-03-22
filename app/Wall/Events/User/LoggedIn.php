@@ -6,7 +6,7 @@
  * Time: 4:17 PM
  */
 
-namespace App\Events\User;
+namespace App\Wall\Events\User;
 
 
 class LoggedIn

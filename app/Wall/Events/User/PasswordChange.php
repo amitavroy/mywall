@@ -6,7 +6,7 @@
  * Time: 9:21 AM
  */
 
-namespace App\Events\User;
+namespace App\Wall\Events\User;
 
 
 class PasswordChange

@@ -34,11 +34,21 @@ class User extends Authenticatable
 
     protected $presenter = UserPresenter::class;
 
+    /**
+     * Relation between User and Role
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function roles()
     {
         return $this->belongsToMany('App\Role');
     }
 
+    /**
+     * Handle the user profile picture update
+     *
+     * @param Request $request
+     */
     public function handleUserProfilePicUpdate(Request $request)
     {
         $this->removeOldProfileImage();

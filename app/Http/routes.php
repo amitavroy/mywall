@@ -38,32 +38,32 @@ Route::group(['middleware' => ['web']], function () {
          */
         Route::get('profile', [
             'as' => 'profile',
-            'uses' => 'UserController@getProfilePage',
+            'uses' => '\App\Wall\Http\Controllers\UserController@getProfilePage',
         ]);
 
         Route::post('profile', [
             'as' => 'profile.save',
-            'uses' => 'UserController@postProfilePage',
+            'uses' => '\App\Wall\Http\Controllers\UserController@postProfilePage',
         ]);
 
         Route::post('avatar-save', [
             'as' => 'avatar.save',
-            'uses' => 'UserController@postSaveUserAvatar',
+            'uses' => '\App\Wall\Http\Controllers\UserController@postSaveUserAvatar',
         ]);
 
         Route::get('activity-log', [
             'as' => 'activity-log',
-            'uses' => 'ActivityController@getUserActivityList',
+            'uses' => '\App\Wall\Http\Controllers\ActivityController@getUserActivityList',
         ]);
 
         Route::get('change-password', [
             'as' => 'user.change-password',
-            'uses' => 'UserController@getPasswordChangePage',
+            'uses' => '\App\Wall\Http\Controllers\UserController@getPasswordChangePage',
         ]);
 
         Route::post('change-password', [
             'as' => 'user.save-new-password',
-            'uses' => 'UserController@postChangePassword',
+            'uses' => '\App\Wall\Http\Controllers\UserController@postChangePassword',
         ]);
 
         /**

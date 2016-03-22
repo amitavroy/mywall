@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Wall\Http\Controllers;
 
-use App\Events\User\Created;
-use App\Events\User\PasswordChange;
-use App\Events\User\ProfileUpdate;
+use App\Http\Controllers\Controller;
+use App\Wall\Events\User\Created;
+use App\Wall\Events\User\PasswordChange;
+use App\Wall\Events\User\ProfileUpdate;
 use App\Http\Requests;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\CreateUserRequest;
@@ -50,6 +51,7 @@ class UserController extends Controller
 
     /**
      * Handle the save user profile image
+     *
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
