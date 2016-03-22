@@ -6,7 +6,7 @@
  * Time: 11:01 PM
  */
 
-namespace App\Repositories\Activity;
+namespace App\Wall\Repositories\Activity;
 
 
 use App\Support\Activity\Activity;

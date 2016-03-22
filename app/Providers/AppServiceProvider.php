@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use App\Repositories\Activity\ActivityRepository;
-use App\Repositories\Activity\EloquentActivity;
 use App\Repositories\Mail\EloquentMail;
 use App\Repositories\Mail\MailRepository;
 use App\Repositories\Permission\EloquentPermission;
 use App\Repositories\Permission\PermissionRepository;
 use App\Repositories\Role\EloquentRole;
 use App\Repositories\Role\RoleRepository;
+use App\Wall\Repositories\Activity\ActivityRepository;
+use App\Wall\Repositories\Activity\EloquentActivity;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

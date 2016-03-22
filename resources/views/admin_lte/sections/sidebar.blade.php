@@ -79,12 +79,6 @@
                     <small class="label pull-right bg-red">3</small>
                 </a>
             </li>
-            <li>
-                <a href="pages/mailbox/mailbox.html">
-                    <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                    <small class="label pull-right bg-yellow">12</small>
-                </a>
-            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

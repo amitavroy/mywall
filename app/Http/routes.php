@@ -148,9 +148,10 @@ Route::group(['middleware' => ['web']], function () {
 
             Route::get('list', [
                 'as' => 'activity.list',
-                'uses' => 'ActivityController@getActivityList'
+                'uses' => '\App\Wall\Http\Controllers\ActivityController@getActivityList'
             ]);
 
         });
+
     });
 });

@@ -220,6 +220,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
+        'Uuid' => Webpatser\Uuid\Uuid::class,
 
     ],
 

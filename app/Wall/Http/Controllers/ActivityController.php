@@ -6,10 +6,10 @@
  * Time: 1:10 PM
  */
 
-namespace App\Http\Controllers;
+namespace App\Wall\Http\Controllers;
 
-
-use App\Repositories\Activity\ActivityRepository;
+use App\Http\Controllers\Controller;
+use App\Wall\Repositories\Activity\ActivityRepository;
 
 class ActivityController extends Controller
 {
@@ -39,6 +39,10 @@ class ActivityController extends Controller
         return view(settings('theme_folder') . 'activity/activity-list', compact('activities'));
     }
 
+    /**
+     * Get the list of activity for an individual user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getUserActivityList()
     {
         $activities = $this->activity->getUserActivitiesWithPagination(20);

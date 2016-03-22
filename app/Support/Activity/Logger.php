@@ -9,7 +9,7 @@
 namespace App\Support\Activity;
 
 
-use App\Repositories\Activity\ActivityRepository;
+use App\Wall\Repositories\Activity\ActivityRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 

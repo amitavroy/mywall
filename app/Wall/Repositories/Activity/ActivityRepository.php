@@ -6,7 +6,7 @@
  * Time: 11:00 PM
  */
 
-namespace App\Repositories\Activity;
+namespace App\Wall\Repositories\Activity;
 
 
 interface ActivityRepository
@@ -15,7 +15,7 @@ interface ActivityRepository
 
     public function getAllActivities();
 
-    public function paginateActivities($limit, $search);
+    public function paginateActivities($limit, $search = null);
 
-    public function getUserActivitiesWithPagination();
+    public function getUserActivitiesWithPagination($limit);
 }

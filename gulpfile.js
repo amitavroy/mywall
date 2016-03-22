@@ -11,6 +11,7 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
+elixir(function (mix) {
     mix.sass('app.scss');
+    //mix.scriptsIn('resources/assets/js/angular/mailbox', 'public/js/angular/mailbox-app.js');
 });
