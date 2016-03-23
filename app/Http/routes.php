@@ -30,7 +30,7 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/', [
             'as' => 'dashboard',
-            'uses' => 'DashboardController@getDashboard',
+            'uses' => '\App\Wall\Http\Controllers\DashboardController@getDashboard',
         ]);
 
         /**
