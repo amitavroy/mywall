@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace App\Wall\Providers;
 
 use App\Support\Validations\CurrentPasswordValidation;
 use Illuminate\Support\Facades\Validator;

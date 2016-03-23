@@ -6,11 +6,12 @@
  * Time: 11:23 PM
  */
 
-namespace App\Repositories\Permission;
+namespace App\Wall\Repositories\Permission;
 
 
 use App\Permission;
-use App\Repositories\EloquentDBRepository;
+use App\Wall\Repositories\EloquentDBRepository;
+use App\Wall\Repositories\Permission\PermissionRepository;
 
 class EloquentPermission extends EloquentDBRepository implements PermissionRepository
 {

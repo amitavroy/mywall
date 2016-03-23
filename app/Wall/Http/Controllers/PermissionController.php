@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Wall\Http\Controllers;
 
 use App\Events\Permission\Created;
+use App\Http\Controllers\Controller;
 use App\Http\Requests;
-use App\Http\Requests\CreatePermissionRequest;
-use App\Permission;
-use App\Repositories\Permission\PermissionRepository;
-use App\Repositories\Role\RoleRepository;
+use App\Wall\Http\Request\Permission\CreatePermissionRequest;
+use App\Wall\Repositories\Permission\PermissionRepository;
+use App\Wall\Repositories\Role\RoleRepository;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller

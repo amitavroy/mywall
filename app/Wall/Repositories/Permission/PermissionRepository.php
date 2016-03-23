@@ -6,7 +6,7 @@
  * Time: 11:16 PM
  */
 
-namespace App\Repositories\Permission;
+namespace App\Wall\Repositories\Permission;
 
 
 interface PermissionRepository

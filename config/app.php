@@ -155,7 +155,13 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\CustomValidationServiceProvider::class,
+
+        /*
+         * Wall Providers
+         */
+        App\Providers\WallProvider::class,
+        App\Wall\Providers\WallRouteProvider::class,
+        App\Wall\Providers\CustomValidationServiceProvider::class,
 
         /*
          * Contributed Service Providers...

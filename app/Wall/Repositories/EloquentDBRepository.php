@@ -6,7 +6,7 @@
  * Time: 11:17 PM
  */
 
-namespace App\Repositories;
+namespace App\Wall\Repositories;
 
 
 abstract class EloquentDBRepository
