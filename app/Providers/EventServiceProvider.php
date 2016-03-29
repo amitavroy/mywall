@@ -2,9 +2,6 @@
 
 namespace App\Providers;
 
-use App\Wall\Listeners\RoleEventsSubscriber;
-use App\Wall\Listeners\UserEventSubscriber;
-use App\Listeners\PermissionEventSubscriber;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -19,17 +16,6 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
-    ];
-
-    /**
-     * The subscriber classes to register.
-     *
-     * @var array
-     */
-    protected $subscribe = [
-        RoleEventsSubscriber::class,
-        UserEventSubscriber::class,
-        PermissionEventSubscriber::class,
     ];
 
     /**

@@ -50,6 +50,7 @@
 
 <!-- AdminLTE App -->
 <script src="{{theme_url('js/app.min.js')}}"></script>
+<script src="{{theme_url('js/common-utils.js')}}"></script>
 
 <script>
     $.ajaxSetup({

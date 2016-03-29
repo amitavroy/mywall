@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Presenters\UserPresenter;
+use App\Wall\Presenters\UserPresenter;
 use App\Support\FileManager;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;

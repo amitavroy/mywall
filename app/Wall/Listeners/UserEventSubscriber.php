@@ -9,6 +9,7 @@
 namespace App\Wall\Listeners;
 
 
+use App\Repositories\Mail\MailRepository;
 use App\Wall\Events\User\Created;
 use App\Wall\Events\User\LoggedIn;
 use App\Wall\Events\User\Logout;
@@ -23,13 +24,19 @@ class UserEventSubscriber
      * @var Logger
      */
     private $logger;
+    /**
+     * @var MailRepository
+     */
+    private $mail;
 
     /**
      * @param Logger $logger
+     * @param MailRepository $mail
      */
-    public function __construct(Logger $logger)
+    public function __construct(Logger $logger, MailRepository $mail)
     {
         $this->logger = $logger;
+        $this->mail = $mail;
     }
 
     /**
@@ -42,7 +49,7 @@ class UserEventSubscriber
         $this->logger->log('A new user was create');
 
         if (settings('send_password_through_mail') == true) {
-            $event->sendUserCreationEmail();
+            $event->sendUserCreationEmail($this->mail);
             $this->logger->log('User registration mail was sent.');
         }
     }

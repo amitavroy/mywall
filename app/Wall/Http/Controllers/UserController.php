@@ -14,6 +14,7 @@ use App\Repositories\Mail\MailRepository;
 use App\Role;
 use App\Support\FileManager;
 use App\User;
+use App\Wall\Repositories\User\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,20 @@ use Laracasts\Flash\Flash;
 
 class UserController extends Controller
 {
+    /**
+     * @var UserRepository
+     */
+    private $user;
+
+    /**
+     * UserController constructor.
+     * @param UserRepository $user
+     */
+    public function __construct(UserRepository $user)
+    {
+        $this->user = $user;
+    }
+
     /**
      * Get the profile page to the user
      *
@@ -103,24 +118,24 @@ class UserController extends Controller
      */
     public function postSaveUser(CreateUserRequest $request, MailRepository $mail)
     {
-        $pass = null;
-        $user = new User;
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->first_name = $request->input('first_name');
-        $user->last_name = $request->input('last_name');
-        $user->status = 1;
+        // generate the user data
+        $userData = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'status' => 1,
+        ];
 
+        // check if email needs to be sent
         if (settings('send_password_through_mail') == true) {
             $pass = uniqid();
-            $user->password = Hash::make($pass);
+            $userData['password'] = Hash::make($pass);
         } else {
-            $user->password = Hash::make($request->input('password'));
+            $userData['password'] = Hash::make($request->input('password'));
         }
 
-        event(new Created($user, $pass, $mail));
-
-        $user->save();
+        $this->user->create($userData, $pass);
 
         return redirect()->back();
     }

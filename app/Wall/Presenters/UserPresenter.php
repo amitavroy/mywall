@@ -6,7 +6,7 @@
  * Time: 11:23 PM
  */
 
-namespace App\Presenters;
+namespace App\Wall\Presenters;
 
 
 use App\Support\FileManager;

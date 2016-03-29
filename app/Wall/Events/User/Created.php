@@ -25,23 +25,21 @@ class Created
      * Created constructor.
      * @param User $user
      * @param null $pass
-     * @param MailRepository $mail
      */
-    public function __construct(User $user, $pass = null, MailRepository $mail)
+    public function __construct($user, $pass = null)
     {
         $this->user = $user;
         $this->password = $pass;
-        $this->mail = $mail;
     }
 
-    public function sendUserCreationEmail()
+    public function sendUserCreationEmail(MailRepository $mail)
     {
         $mailData = [
             'pass' => $this->password,
             'user' => $this->user,
         ];
 
-        $this->mail->log([
+        $mail->log([
             'from' => 'amitav.roy@focalworks.in',
             'to' => $this->user->email,
             'message' => View::make(settings('theme_folder') . 'mails/user-created-mail')

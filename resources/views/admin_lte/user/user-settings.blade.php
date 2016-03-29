@@ -78,5 +78,5 @@
 @endsection
 
 @section('scripts-footer')
-    {!! JsValidator::formRequest('App\Http\Requests\ChangePasswordRequest', '#change-password-form') !!}
+    {!! JsValidator::formRequest('App\Wall\Http\Request\User\ChangePasswordRequest', '#change-password-form') !!}
 @endsection

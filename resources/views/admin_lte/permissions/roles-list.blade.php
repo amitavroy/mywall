@@ -27,7 +27,7 @@
 
                 <div class="box-body">
                     <table class="table table-hover table-striped table-bordered" id="role-listing">
-                    <tbody>
+                        <tbody>
                         <tr>
                             <th>#</th>
                             <th>Display name</th>
@@ -42,9 +42,13 @@
                                 <td>{{$role->display_name}}</td>
                                 <td>{{$role->name}}</td>
                                 <td>{{$role->description}}</td>
-                                <td>
-                                    <a href="javascript:;"><i class="fa fa-edit"></i></a>
-                                    <a href="{{route('role.delete', $role->id)}}"><i class="fa fa-trash"></i></a>
+                                <td class="col-sm-2">
+                                    <a href="javascript:;" class="btn btn-info">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a href="{{route('role.delete', $role->id)}}" class="btn btn-warning">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -109,7 +113,7 @@
     @endsection
 
     @section('scripts-footer')
-    <!-- AdminLTE for demo purposes -->
+        <!-- AdminLTE for demo purposes -->
     <script src="{{theme_url('js/demo.js')}}"></script>
     <script src="{{theme_url('js/pages/roles.js')}}"></script>
     <script>

@@ -159,9 +159,10 @@ return [
         /*
          * Wall Providers
          */
-        App\Providers\WallProvider::class,
+        App\Wall\Providers\WallServiceProvider::class,
         App\Wall\Providers\WallRouteProvider::class,
         App\Wall\Providers\CustomValidationServiceProvider::class,
+        App\Wall\Providers\WallEventServiceProvider::class,
 
         /*
          * Contributed Service Providers...

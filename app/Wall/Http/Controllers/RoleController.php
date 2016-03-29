@@ -5,7 +5,6 @@ namespace App\Wall\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Wall\Http\Request\Role\CreateRoleRequest;
 use App\Wall\Repositories\Role\RoleRepository;
-use Illuminate\Support\Facades\DB;
 use Laracasts\Flash\Flash;
 
 class RoleController extends Controller

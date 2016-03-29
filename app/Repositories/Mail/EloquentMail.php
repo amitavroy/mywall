@@ -9,7 +9,7 @@
 namespace App\Repositories\Mail;
 
 use App\Mail;
-use App\Repositories\EloquentDBRepository;
+use App\Wall\Repositories\EloquentDBRepository;
 use Illuminate\Support\Facades\Auth;
 use Mail as SendMailService;
 

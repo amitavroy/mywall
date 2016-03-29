@@ -11,7 +11,6 @@ namespace App\Wall\Repositories\Permission;
 
 use App\Permission;
 use App\Wall\Repositories\EloquentDBRepository;
-use App\Wall\Repositories\Permission\PermissionRepository;
 
 class EloquentPermission extends EloquentDBRepository implements PermissionRepository
 {
