@@ -28,9 +28,5 @@ Route::group(['middleware' => ['web']], function () {
             'uses' => 'Auth\AuthController@doLogout',
         ]);
 
-
-
-
-
     });
 });

@@ -85,6 +85,12 @@ return [
             'prefix'   => '',
         ],
 
+        'sqlite_memory' => [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+            'prefix'   => env('DB_PREFIX', ''),
+        ],
+
     ],
 
     /*
