@@ -80,12 +80,14 @@ class AuthController extends Controller
         }
 
         if (Auth::attempt(['email' => $email, 'password' => $password, 'status' => 1], $remember)) {
-            // Authentication passed...
+            \Log::info('Login pass');
 
             event(new LoggedIn(Auth::user()));
 
             return redirect()->intended('/');
         }
+
+        \Log::info('Login failed');
 
         flash()->warning('The username and password does not match.');
 
