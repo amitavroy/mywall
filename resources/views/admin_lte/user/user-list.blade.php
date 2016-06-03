@@ -3,7 +3,7 @@
 @section('page-title', 'User list')
 
 @section('page-header')
-    <!-- Content Header (Page header) -->
+        <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
         User list
@@ -26,26 +26,32 @@
                 </div>
 
                 <div class="box-body">
-                    <table class="table table-bordered table-striped table-hover">
+                    <table class="table table-bordered table-striped table-hover" id="user-listing">
                         <tbody>
                         <tr>
                             <th>#id</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Roles</th>
                             <th>Member Since</th>
                             <th></th>
                         </tr>
                         @foreach($users as $user)
-                        <tr>
-                            <td>{{$user->id}}</td>
-                            <td>{{$user->name}}</td>
-                            <td>{{$user->email}}</td>
-                            <td>{{$user->created_at}}</td>
-                            <td>
-                                <a href="{{route('user.edit', $user->id)}}">Edit</a>
-                            </td>
-                        </tr>
-                            @endforeach
+                            <tr>
+                                <td>{{$user->id}}</td>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->email}}</td>
+                                <td>
+                                    @foreach($user->roles as $role)
+                                        <span class="role-name">{{ucfirst($role->name)}}</span>
+                                    @endforeach
+                                </td>
+                                <td>{{$user->created_at}}</td>
+                                <td>
+                                    <a href="{{route('user.edit', $user->id)}}">Edit</a>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

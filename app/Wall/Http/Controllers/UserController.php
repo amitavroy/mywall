@@ -3,17 +3,16 @@
 namespace App\Wall\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Wall\Events\User\Created;
-use App\Wall\Events\User\PasswordChange;
-use App\Wall\Events\User\ProfileUpdate;
 use App\Http\Requests;
-use App\Wall\Http\Request\User\ChangePasswordRequest;
-use App\Wall\Http\Request\User\CreateUserRequest;
-use App\Wall\Http\Request\User\UserUpdateRequest;
 use App\Repositories\Mail\MailRepository;
 use App\Role;
 use App\Support\FileManager;
 use App\User;
+use App\Wall\Events\User\PasswordChange;
+use App\Wall\Events\User\ProfileUpdate;
+use App\Wall\Http\Request\User\ChangePasswordRequest;
+use App\Wall\Http\Request\User\CreateUserRequest;
+use App\Wall\Http\Request\User\UserUpdateRequest;
 use App\Wall\Repositories\User\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,7 +94,8 @@ class UserController extends Controller
      */
     public function getAddUser()
     {
-        return view(settings('theme_folder') . 'user/user-add');
+        $roles = Role::orderBy('id')->get();
+        return view(settings('theme_folder') . 'user/user-add', compact('roles'));
     }
 
     /**
@@ -105,7 +105,7 @@ class UserController extends Controller
      */
     public function getUserList()
     {
-        $users = User::all();
+        $users = User::with('roles')->get();
         return view(settings('theme_folder') . 'user/user-list', compact('users'));
     }
 
@@ -135,7 +135,9 @@ class UserController extends Controller
             $userData['password'] = Hash::make($request->input('password'));
         }
 
-        $this->user->create($userData, $pass);
+        $userCreated = $this->user->create($userData, $pass);
+
+        $this->user->addRoles($userCreated, $request->input('role'));
 
         return redirect()->back();
     }

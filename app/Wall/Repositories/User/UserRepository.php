@@ -14,4 +14,6 @@ interface UserRepository
     public function getById($id);
 
     public function create(array $data, $pass);
+
+    public function addRoles($user, $roleIds);
 }

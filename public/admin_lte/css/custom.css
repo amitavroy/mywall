@@ -9,3 +9,11 @@
     width: 200px;
     height: 200px;
 }
+
+#user-listing span.role-name::after {
+    content: " | ";
+}
+
+#user-listing span.role-name:last-child::after {
+    content: "";
+}

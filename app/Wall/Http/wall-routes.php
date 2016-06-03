@@ -46,7 +46,7 @@ Route::group(['middleware' => ['web', 'auth']], function() {
     ]);
 
     /**
-     * Permission urls
+     * Role and Permission urls
      */
     Route::group(['prefix' => 'permissions', 'middleware' => 'role:super admin'], function () {
 

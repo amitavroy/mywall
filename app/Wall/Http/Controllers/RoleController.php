@@ -49,6 +49,11 @@ class RoleController extends Controller
 
     public function getDeleteRole($id)
     {
+        if (!Auth::user()->can('manage-role-perm')) {
+            Flash::warning('You do not have permission to delete roles.');
+            return redirect()->back();
+        }
+        
         $this->role->delete($id);
 
         Flash::success('Role was deleted');

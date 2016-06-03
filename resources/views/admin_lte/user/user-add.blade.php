@@ -20,7 +20,7 @@
 @section('content')
     <div class="row">
         <form action="{{route('user.save')}}" method="post" id="save-user" class="form-horizontal">
-            <div class="col-sm-7 col-sm-push-2">
+            <div class="col-sm-6 col-sm-push-3">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Add new User</h3>
@@ -90,10 +90,30 @@
                                 </div>
                             </div>
                         @endif
+
+                        <div class="form-group">
+                            <label for="name" class="col-sm-3 control-label">Roles</label>
+
+                            <div class="col-sm-9">
+                                @foreach($roles as $role)
+                                    {{--Should not show role 2. All users are authenticated users by default--}}
+                                    @if ($role->id != 2)
+                                        <div class="checkbox icheck">
+                                            <label class="col-sm-9">
+                                                <input type="checkbox"
+                                                       name="role[{{$role->id}}]"> {{$role->display_name}}
+                                            </label>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <button class="btn btn-success">Save user</button>
+                <button class="btn btn-success">
+                    <i class="fa fa-save"></i> Save user
+                </button>
             </div>
         </form>
 
@@ -102,4 +122,14 @@
 
 @section('scripts-footer')
     {!! JsValidator::formRequest('\App\Wall\Http\Request\User\CreateUserRequest', '#save-user') !!}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
 @endsection
