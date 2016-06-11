@@ -105,8 +105,7 @@ class UserController extends Controller
      */
     public function getUserList()
     {
-        $users = User::with('roles')->get();
-        return view(settings('theme_folder') . 'user/user-list', compact('users'));
+        return view(settings('theme_folder') . 'user/user-list');
     }
 
     /**

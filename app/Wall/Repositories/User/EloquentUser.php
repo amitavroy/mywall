@@ -8,7 +8,6 @@
 
 namespace App\Wall\Repositories\User;
 
-
 use App\User;
 use App\Wall\Events\User\Created;
 use App\Wall\Repositories\Role\RoleRepository;
@@ -79,5 +78,10 @@ class EloquentUser implements UserRepository
             $role = $this->roleRepository->findById($id);
             $user->attachRole($role);
         }
+    }
+
+    public function userList()
+    {
+        return $this->model->with('roles')->paginate(20);
     }
 }

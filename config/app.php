@@ -163,6 +163,7 @@ return [
         App\Wall\Providers\WallRouteProvider::class,
         App\Wall\Providers\CustomValidationServiceProvider::class,
         App\Wall\Providers\WallEventServiceProvider::class,
+        App\Wall\Providers\ComposerServiceProvider::class,
 
         /*
          * Contributed Service Providers...
