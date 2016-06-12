@@ -80,8 +80,7 @@ class AuthController extends Controller
         }
 
         if (Auth::attempt(['email' => $email, 'password' => $password, 'status' => 1], $remember)) {
-            \Log::info('Login pass');
-
+            
             event(new LoggedIn(Auth::user()));
 
             return redirect()->intended('/');

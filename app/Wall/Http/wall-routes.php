@@ -6,6 +6,21 @@
  * Time: 3:19 PM
  */
 
+Route::group(['middleware' => 'web'], function() {
+    /**
+     * Social logins
+     */
+    Route::get('auth/facebook', [
+        'as' => 'auth-facebook',
+        'uses' => '\App\Wall\Http\Controllers\UserController@redirectToProvider',
+    ]);
+
+    Route::get('auth/facebook/callback', [
+        'as' => 'facebook-callback',
+        'uses' => '\App\Wall\Http\Controllers\UserController@handleProviderCallback',
+    ]);
+});
+
 Route::group(['middleware' => ['web', 'auth']], function() {
     Route::get('/', [
         'as' => 'dashboard',

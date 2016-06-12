@@ -18,4 +18,6 @@ interface UserRepository
     public function addRoles($user, $roleIds);
 
     public function userList();
+
+    public function findOrCreateSocialUser($type, $id, $userObj);
 }

@@ -36,9 +36,18 @@ class Logger
 
     public function log($message)
     {
+        // if the even is system generated, then add 0 as user id
+        // and mark it system event
+        if (Auth::guest()) {
+            $userId = 1;
+            $message = 'System event: ' . $message;
+        } else {
+            $userId = Auth::user()->id;
+        }
+
         $this->activity->log([
             'description' => $message,
-            'user_id' => Auth::user()->id,
+            'user_id' => $userId,
             'ip_address' => $this->request->ip(),
             'user_agent' => $this->getUserAgent(),
         ]);

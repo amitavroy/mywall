@@ -39,6 +39,10 @@ class FileManager
             return env('S3_URL') . $arrUrl[1];
         }
 
+        if ($arrUrl[0] == 'https') {
+            return $uri;
+        }
+
         return url($arrUrl[1]);
     }
 

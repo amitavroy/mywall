@@ -20,7 +20,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'avatar_url', 'first_name', 'last_name',
+        'status', 'account_type', 'sns_acc_id'
     ];
 
     /**
@@ -56,7 +57,7 @@ class User extends Authenticatable
 
     private function removeOldProfileImage()
     {
-        if (Auth::user()->avatar_url != '') {
+        if (Auth::user()->avatar_url != '' && Auth::user()->account_type == 'normal') {
             $fm = new FileManager;
             $fm->removeFile(Auth::user()->avatar_url);
         }

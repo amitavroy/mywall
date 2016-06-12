@@ -8,6 +8,7 @@ use App\Repositories\Mail\MailRepository;
 use App\Role;
 use App\Support\FileManager;
 use App\User;
+use App\Wall\Events\User\LoggedIn;
 use App\Wall\Events\User\PasswordChange;
 use App\Wall\Events\User\ProfileUpdate;
 use App\Wall\Http\Request\User\ChangePasswordRequest;
@@ -18,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laracasts\Flash\Flash;
+use Socialite;
 
 class UserController extends Controller
 {
@@ -33,6 +35,34 @@ class UserController extends Controller
     public function __construct(UserRepository $user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * Redirect the user to the Facebook auth page and get the token.
+     */
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Handle the user's token call back, 
+     * check if new user needs to be created
+     * then login the user. 
+     * 
+     * @return [type]
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+        
+        $checkUser = $this->user->findOrCreateSocialUser('facebook', $user->id, $user);
+
+        Auth::login($checkUser, true);
+
+        event(new LoggedIn(Auth::user()));
+
+        return redirect()->route('dashboard');
     }
 
     /**

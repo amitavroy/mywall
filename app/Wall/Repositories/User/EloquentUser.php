@@ -80,8 +80,52 @@ class EloquentUser implements UserRepository
         }
     }
 
+    /**
+     * Get the list of users with pagination.
+     * 
+     * @return [type]
+     */
     public function userList()
     {
         return $this->model->with('roles')->paginate(20);
+    }
+
+    /**
+     * Check if a user is present for the Social Network 
+     * by checking with the SNS type and SNS account id.
+     * 
+     * @param  $type Social network type
+     * @param  $id Social network account id
+     * @return User object
+     */
+    public function findOrCreateSocialUser($type, $id, $userObj)
+    {
+        $user = $this->model
+            ->where('account_type', $type)
+            ->where('sns_acc_id', $id)
+            ->first();
+
+        if ($user) {
+            return $user;
+        }
+
+        if ($type == 'facebook') {
+            $user = $this->createFacebookUser($userObj);
+        }
+
+        return $user;
+    }
+
+    private function createFacebookUser($userObj)
+    {
+        $userData = [
+            'name' => isset($userObj->name) ? $userObj->name : '',
+            'email' => isset($userObj->email) ? $userObj->email : '',
+            'avatar_url' => isset($userObj->avatar_original) ? $userObj->avatar_original : '',
+            'sns_acc_id' => $userObj->id,
+            'account_type' => 'facebook',
+        ];
+
+        return $this->create($userData, '');
     }
 }

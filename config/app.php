@@ -173,6 +173,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -229,6 +230,7 @@ return [
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
         'JsValidator' => Proengsoft\JsValidation\Facades\JsValidatorFacade::class,
         'Uuid' => Webpatser\Uuid\Uuid::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 

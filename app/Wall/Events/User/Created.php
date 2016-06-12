@@ -34,6 +34,11 @@ class Created
 
     public function sendUserCreationEmail(MailRepository $mail)
     {
+        // for social logins, no emails will be sent.
+        if ($this->user->accont_type != 'normal') {
+            return true;
+        }
+
         $mailData = [
             'pass' => $this->password,
             'user' => $this->user,
