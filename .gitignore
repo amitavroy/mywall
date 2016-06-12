@@ -7,3 +7,4 @@ Homestead.json
 .DS_Store
 public/uploads
 public/fw-labs-db
+.phpintel/
