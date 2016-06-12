@@ -5,6 +5,7 @@ namespace App\Wall\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Wall\Http\Request\Role\CreateRoleRequest;
 use App\Wall\Repositories\Role\RoleRepository;
+use Illuminate\Support\Facades\Auth;
 use Laracasts\Flash\Flash;
 
 class RoleController extends Controller
@@ -49,6 +50,13 @@ class RoleController extends Controller
 
     public function getDeleteRole($id)
     {
+        // system roles should not get deleted
+        if ($id == 1 || $id == 2) {
+            Flash::warning('System roles cannot be deleted.');
+            return redirect()->back();
+        }
+
+        // check for permission 
         if (!Auth::user()->can('manage-role-perm')) {
             Flash::warning('You do not have permission to delete roles.');
             return redirect()->back();

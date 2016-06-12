@@ -28,7 +28,7 @@
                 <div class="box-body">
                     <table class="table table-hover table-striped table-bordered" id="role-listing">
                         <tbody>
-                        <tr>
+                        <tr class="info">
                             <th>#</th>
                             <th>Display name</th>
                             <th>System name</th>
@@ -46,9 +46,11 @@
                                     <a href="javascript:;" class="btn btn-info">
                                         <i class="fa fa-edit"></i>
                                     </a>
+                                    @if($role->id != 1 && $role->id != 2)
                                     <a href="{{route('role.delete', $role->id)}}" class="btn btn-warning">
                                         <i class="fa fa-trash"></i>
                                     </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -104,7 +106,6 @@
                     </div>
                 </form>
                 {{--form ends--}}
-
             </div>
         </div>
     </div>
