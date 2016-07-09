@@ -29,6 +29,7 @@
           {{--Content--}}
           <div class="box-body">
             <form action="{{route('settings.save')}}" method="post">
+              {{ csrf_field() }}
               <table class="table table-hover table-striped table-bordered">
                 <thead>
                 <tr>

@@ -147,6 +147,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     });
 
+    /**
+     * Settings URLs
+     */
     Route::group(['prefix' => 'settings', 'middleware' => 'permission:manage-settings'], function () {
 
         Route::get('manage', [

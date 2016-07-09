@@ -21,6 +21,9 @@ class SettingsController extends Controller
     {
         $postData = $request->all();
 
+        // need to unset the csrf token
+        unset($postData['_token']);
+
         foreach ($postData as $name => $value) {
             Setting::set($name, $value);
         }

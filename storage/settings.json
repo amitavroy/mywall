@@ -1,8 +1,1 @@
-{
-    "site_name": "My Wall",
-    "theme_folder": "admin_lte/",
-    "forgot_password": 1,
-    "social_logins": true,
-    "new_user_registration": true,
-    "send_password_through_mail": false
-}
+{"site_name":"My Wall","theme_folder":"admin_lte\/","forgot_password":"true","social_logins":"false","new_user_registration":"false","send_password_through_mail":"false"}
