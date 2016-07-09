@@ -25,6 +25,7 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
+
             <li class="{{ Request::is('/') ? 'active open' : ''  }}">
                 <a href="{{route('dashboard')}}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
@@ -34,16 +35,16 @@
             <li class="treeview {{ Request::is('permissions*') ? 'active' : ''  }}">
                 <a href="javascript:;">
                     <i class="fa fa-user"></i> <span>Roles &amp; Permissions</span> <i
-                        class="fa fa-angle-left pull-right"></i>
+                            class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Request::is('permissions/manage-roles') ? 'active' : ''  }}">
+                    <li class="{{ Request::route()->getName() == 'roles.view' ? 'active' : ''  }}">
                         <a href="{{route('roles.view')}}"><i class="fa fa-circle-o"></i> Manage Role</a>
                     </li>
-                    <li class="{{ Request::is('permissions/manage-permission') ? 'active' : ''  }}">
+                    <li class="{{ Request::route()->getName() == 'permission.list' ? 'active' : ''  }}">
                         <a href="{{route('permission.list')}}"><i class="fa fa-circle-o"></i> Manage Permissions</a>
                     </li>
-                    <li class="{{ Request::is('permissions/permission-matrix') ? 'active' : ''  }}">
+                    <li class="{{ Request::route()->getName() == 'permission.matrix' ? 'active' : ''  }}">
                         <a href="{{route('permission.matrix')}}"><i class="fa fa-circle-o"></i> Permission Matrix</a>
                     </li>
                 </ul>
@@ -54,22 +55,29 @@
             <li class="treeview {{ Request::is('users/*') ? 'active' : ''  }}">
                 <a href="javascript:;">
                     <i class="fa fa-users"></i> <span>Manage Users</span> <i
-                        class="fa fa-angle-left pull-right"></i>
+                            class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Request::is('users/add') ? 'active' : ''  }}">
+                    <li class="{{ Request::route()->getName() == 'user.add' ? 'active' : ''  }}">
                         <a href="{{route('user.add')}}"><i class="fa fa-circle-o"></i> Add user</a>
                     </li>
-                    <li class="{{ Request::is('users/list') ? 'active' : ''  }}">
+                    <li class="{{ Request::route()->getName() == 'user.list' ? 'active' : ''  }}">
                         <a href="{{route('user.list')}}"><i class="fa fa-circle-o"></i> View users</a>
                     </li>
                 </ul>
             </li>
             @endpermission
             @permission('view-activity')
-            <li>
+            <li class="{{ Request::route()->getName() == 'activity.list' ? 'active' : ''  }}">
                 <a href="{{route('activity.list')}}">
                     <i class="fa fa-calendar"></i> <span>Activity List</span>
+                </a>
+            </li>
+            @endpermission
+            @permission('manage-settings')
+            <li class="{{ Request::route()->getName() == 'settings.manage' ? 'active' : ''  }}">
+                <a href="{{route('settings.manage')}}">
+                    <i class="fa fa-gear"></i> <span>Manage Settings</span>
                 </a>
             </li>
             @endpermission

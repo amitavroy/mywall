@@ -34,7 +34,7 @@ class CreateUserRequest extends Request
             'last_name' => 'required',
         ];
 
-        if (settings('send_password_through_mail') == false) {
+        if (settings('send_password_through_mail') == "false") {
             $rules['password'] = 'required|min:5';
             $rules['cpassword'] = 'required|min:5|same:password';
         }

@@ -6,7 +6,7 @@
  * Time: 3:19 PM
  */
 
-Route::group(['middleware' => 'web'], function() {
+Route::group(['middleware' => 'web'], function () {
     /**
      * Social logins
      */
@@ -21,7 +21,7 @@ Route::group(['middleware' => 'web'], function() {
     ]);
 });
 
-Route::group(['middleware' => ['web', 'auth']], function() {
+Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/', [
         'as' => 'dashboard',
         'uses' => '\App\Wall\Http\Controllers\DashboardController@getDashboard',
@@ -143,6 +143,20 @@ Route::group(['middleware' => ['web', 'auth']], function() {
         Route::get('list', [
             'as' => 'activity.list',
             'uses' => '\App\Wall\Http\Controllers\ActivityController@getActivityList'
+        ]);
+
+    });
+
+    Route::group(['prefix' => 'settings', 'middleware' => 'permission:manage-settings'], function () {
+
+        Route::get('manage', [
+            'as' => 'settings.manage',
+            'uses' => '\App\Wall\Http\Controllers\SettingsController@getSettingsList'
+        ]);
+
+        Route::post('save', [
+            'as' => 'settings.save',
+            'uses' => '\App\Wall\Http\Controllers\SettingsController@postSettingsSave'
         ]);
 
     });

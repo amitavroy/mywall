@@ -56,6 +56,16 @@ class UserTableSeeder extends Seeder
         $manageActivityViewPermission->save();
         $superAdmin->attachPermission($manageActivityViewPermission);
 
+        /**
+         * Manage settings for application
+         */
+        $manageSettingsPermission = new Permission();
+        $manageSettingsPermission->name = 'manage-settings';
+        $manageSettingsPermission->display_name = 'Manage Settings';
+        $manageSettingsPermission->description = 'Manage Settings for the application. User can change settings.';
+        $manageSettingsPermission->save();
+        $superAdmin->attachPermission($manageSettingsPermission);
+
         $user = User::create([
             'name' => 'Amitav Roy',
             'email' => 'reachme@amitavroy.com',

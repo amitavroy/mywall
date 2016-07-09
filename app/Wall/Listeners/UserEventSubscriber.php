@@ -10,12 +10,12 @@ namespace App\Wall\Listeners;
 
 
 use App\Repositories\Mail\MailRepository;
+use App\Support\Activity\Logger;
 use App\Wall\Events\User\Created;
 use App\Wall\Events\User\LoggedIn;
 use App\Wall\Events\User\Logout;
 use App\Wall\Events\User\PasswordChange;
 use App\Wall\Events\User\ProfileUpdate;
-use App\Support\Activity\Logger;
 use Illuminate\Support\Facades\Auth;
 
 class UserEventSubscriber
@@ -41,14 +41,14 @@ class UserEventSubscriber
 
     /**
      * Raising the event when a new user is created.
-     * 
+     *
      * @param Created $event
      */
     public function onCreate(Created $event)
     {
         $this->logger->log('A new user was create');
 
-        if (settings('send_password_through_mail') == true) {
+        if (settings('send_password_through_mail') == "true") {
             $event->sendUserCreationEmail($this->mail);
             $this->logger->log('User registration mail was sent.');
         }

@@ -157,7 +157,7 @@ class UserController extends Controller
         ];
 
         // check if email needs to be sent
-        if (settings('send_password_through_mail') == true) {
+        if (settings('send_password_through_mail') == "true") {
             $pass = uniqid();
             $userData['password'] = Hash::make($pass);
         } else {
