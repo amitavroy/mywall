@@ -46,16 +46,16 @@ class UserController extends Controller
     }
 
     /**
-     * Handle the user's token call back, 
+     * Handle the user's token call back,
      * check if new user needs to be created
-     * then login the user. 
-     * 
+     * then login the user.
+     *
      * @return [type]
      */
     public function handleProviderCallback()
     {
         $user = Socialite::driver('facebook')->user();
-        
+
         $checkUser = $this->user->findOrCreateSocialUser('facebook', $user->id, $user);
 
         Auth::login($checkUser, true);
@@ -162,11 +162,15 @@ class UserController extends Controller
             $userData['password'] = Hash::make($pass);
         } else {
             $userData['password'] = Hash::make($request->input('password'));
+            $pass = Hash::make($request->input('password'));
         }
 
         $userCreated = $this->user->create($userData, $pass);
 
-        $this->user->addRoles($userCreated, $request->input('role'));
+        // if role was selected
+        if ($request->input('role')) {
+            $this->user->addRoles($userCreated, $request->input('role'));
+        }
 
         return redirect()->back();
     }

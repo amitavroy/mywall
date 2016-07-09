@@ -32,7 +32,6 @@ class CreateUserRequest extends Request
             'email' => 'required|email|unique:users,email',
             'first_name' => 'required',
             'last_name' => 'required',
-            'role' => 'required|array',
         ];
 
         if (settings('send_password_through_mail') == false) {
